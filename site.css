@@ -1,0 +1,48 @@
+/* Shared styles for every page of santhoshbalaguru.website.
+   Theme tokens, layout, components, glow and animations live here.
+   Page-specific styles stay in each page's own <style> block. */
+:root{--bg:#f6f5f1;--card:#fff;--ink:#14161a;--mute:#5d6470;--line:#e2e0d8;--acc:#e8590c;--acc2:#0b7285;--glow:rgba(232,89,12,.12);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root[data-theme="dark"]{--bg:#0e1013;--card:#171a1f;--ink:#eef0f3;--mute:#9aa3af;--line:#262b33;--acc:#ff8a4c;--acc2:#3bc9db;--glow:rgba(255,138,76,.14)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Inter,system-ui,sans-serif}
+h1,h2,h3{font-family:'Space Grotesk',Inter,sans-serif;line-height:1.15;margin:0}
+a{color:inherit}
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav b{font-family:'Space Grotesk',sans-serif;font-size:1.1rem}nav b span{color:var(--acc)}nav b a{text-decoration:none}
+.links{display:flex;gap:22px;align-items:center;font-size:.92rem}
+.links a{text-decoration:none;color:var(--mute);transition:.2s}.links a:hover{color:var(--acc)}
+#theme{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;width:36px;height:36px;cursor:pointer;font-size:1rem}
+@media(max-width:640px){.links a:not(.keep){display:none}}
+/* layout + type */
+section{max-width:1040px;margin:0 auto;padding:84px 5vw}
+.hero{padding-top:90px;position:relative}
+.hero:before{content:"";position:absolute;inset:-40px 0 auto auto;width:min(420px,90vw);height:min(420px,90vw);background:radial-gradient(circle,var(--glow),transparent 65%);z-index:-1}
+.tag{display:inline-block;padding:6px 14px;border:1px solid var(--line);background:var(--card);border-radius:99px;font-size:.82rem;color:var(--mute)}
+.tag i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2f9e44;margin-right:8px;animation:p 2s infinite}
+@keyframes p{50%{opacity:.3}}
+h1{font-size:clamp(2.6rem,8vw,5rem);margin:22px 0 14px;letter-spacing:-.03em}
+h1 em{font-style:normal;color:var(--acc)}
+.lead{max-width:640px;color:var(--mute);margin:18px 0 28px}
+.eyebrow{font:500 .8rem 'Space Grotesk',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:10px}
+h2{font-size:clamp(1.8rem,4.5vw,2.6rem);margin-bottom:32px}
+/* components */
+.btn{display:inline-block;max-width:100%;overflow-wrap:anywhere;padding:12px 24px;border-radius:12px;background:var(--acc);color:#fff;text-decoration:none;font-weight:600;margin:0 10px 10px 0;transition:.2s;border:1px solid var(--acc)}
+.btn.o{background:transparent;color:var(--ink);border-color:var(--line)}.btn:hover{transform:translateY(-2px)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr));gap:14px;margin-top:48px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.stat b{font:700 2.2rem 'Space Grotesk',sans-serif;color:var(--acc)}.stat span{display:block;color:var(--mute);font-size:.88rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;transition:.25s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-4px);border-color:var(--acc);box-shadow:0 14px 34px var(--glow)}
+.card small{color:var(--acc2);font-weight:600}.card h3{font-size:1.35rem;margin:8px 0 10px}.card p{color:var(--mute);margin:0 0 14px}
+.pills span{display:inline-block;font-size:.76rem;padding:3px 10px;margin:0 6px 6px 0;border-radius:99px;background:var(--bg);border:1px solid var(--line);color:var(--mute)}
+footer{text-align:center;color:var(--mute);font-size:.85rem;padding:30px 5vw 50px}
+/* animations: scroll reveal, cursor glow, progress bar (driven by site.js) */
+.rv{opacity:0;transform:translateY(24px);transition:.7s}.rv.v{opacity:1;transform:none}
+#glow{display:none}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+.hero:before{display:none}
+#glow{display:block;position:fixed;top:0;left:0;width:560px;height:560px;margin:-280px 0 0 -280px;border-radius:50%;pointer-events:none;z-index:-1;background:radial-gradient(circle,color-mix(in srgb,var(--acc) 24%,transparent),transparent 65%);will-change:transform;transform:translate3d(-999px,-999px,0)}
+}
+#bar{position:fixed;top:0;left:0;height:3px;background:var(--acc);width:0;z-index:20}
