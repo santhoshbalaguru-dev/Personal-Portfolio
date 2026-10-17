@@ -46,6 +46,10 @@
 .box h3{font-size:1.2rem;margin-bottom:12px}
 .box ul{margin:0;padding-left:18px;color:var(--mute)}.box li{margin-bottom:7px}
 .box.soon{border-style:dashed}
+.case{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px}
+.case .box h3{font-size:1.1rem;margin-bottom:8px}.case .box p{margin:0;color:var(--mute);font-size:.95rem}
+.hard{margin-top:16px;border-left:4px solid var(--acc);border-radius:8px 20px 20px 8px}
+.hard h3{font-size:1.35rem;margin-bottom:10px}.hard p{color:var(--mute);margin:0 0 12px;max-width:760px}.hard p:last-child{margin:0}
 details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-bottom:10px}
 summary{cursor:pointer;font-weight:600}details p{color:var(--mute);margin:10px 0 0}
 .crumb{font-size:.85rem;color:var(--mute);margin:0 0 14px}.crumb a{color:var(--mute)}
@@ -55,7 +59,7 @@ summary{cursor:pointer;font-weight:600}details p{color:var(--mute);margin:10px 0
 </head>
 <body>
 <nav aria-label="Main"><b><a href="/" aria-label="Santhosh B home"><span>&lt;/&gt;</span> SB</a></b>
-<div class="links"><a href="#features">Features</a><a href="#who">Who it's for</a><a href="#how">How it works</a><a href="#requirements">Requirements</a><a href="#faq">FAQ</a><a class="keep" href="/">← Portfolio</a><a class="keep" href="#contact">Get a quote</a><button id="theme" aria-label="Toggle theme">◐</button></div></nav>
+<div class="links"><a href="#case">Case study</a><a href="#features">Features</a><a href="#who">Who it's for</a><a href="#how">How it works</a><a href="#requirements">Requirements</a><a href="#faq">FAQ</a><a class="keep" href="/">← Portfolio</a><a class="keep" href="#contact">Get a quote</a><button id="theme" aria-label="Toggle theme">◐</button></div></nav>
 
 <main>
 <section class="hero">
@@ -70,6 +74,18 @@ summary{cursor:pointer;font-weight:600}details p{color:var(--mute);margin:10px 0
 <div class="stat"><b>Cancel &amp; protect</b><span>24-hour cancellation, void/reverse guards</span></div>
 <div class="stat"><b>Full audit trail</b><span>Every attempt stored with the raw response</span></div>
 </div>
+</section>
+
+<section id="case" class="rv">
+<div class="eyebrow">Case study</div><h2>The problem, the build, the result</h2>
+<div class="case">
+<div class="box"><h3>Problem</h3><p>Indian businesses must register every B2B invoice with the government e-invoice system (IRP) and get an IRN back. For a company on iDempiere, that meant keying invoices into a portal by hand, or building a one-off integration for each project.</p></div>
+<div class="box"><h3>Approach</h3><p>An OSGi plugin maps each completed invoice to the IRP request and checks it against the official JSON schema before any API call, so errors come back in plain language and name the invoice line. It then registers the invoice through Whitebooks and stores the IRN, signed invoice and QR code on the document. Every attempt is kept with its raw response.</p></div>
+<div class="box"><h3>Result</h3><p>One invoice or a whole date range can be registered from a single process, and each invoice in a batch succeeds or fails on its own. IRNs can be cancelled within the 24-hour window, and invoices with an active IRN are protected from being voided by mistake. Developed and tested against the Whitebooks sandbox.</p></div>
+</div>
+<div class="box hard"><h3>The hard part: an IRN that already exists</h3>
+<p>The IRP will not register the same invoice twice, so it answers with an error saying the IRN already exists. That can happen when a call succeeded at the IRP but the response never made it back, leaving iDempiere with no IRN for an invoice that already has one. Retrying can never fix this.</p>
+<p>The plugin treats that error as a recovery path. It fetches the existing IRN from the IRP and checks that document type, number, date, both GSTINs and the total all match the invoice before attaching it. If anything differs, it refuses and reports the mismatch, so a wrong IRN is never silently stored on an invoice.</p></div>
 </section>
 
 <section id="how" class="rv">

@@ -21,9 +21,9 @@
 <meta name="twitter:title" content="Santhosh B | Java Developer · iDempiere & Oracle SQL">
 <meta name="twitter:description" content="Portfolio of Santhosh B, a Java Developer in Chennai with 1+ year of experience building enterprise ERP applications on Compiere / iDempiere and Oracle SQL, plus manual, regression and UAT testing.">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Santhosh B","url":"https://santhoshbalaguru.website/","jobTitle":"Java Developer","description":"Portfolio of Santhosh B, a Java Developer in Chennai with 1+ year of experience building enterprise ERP applications on Compiere / iDempiere and Oracle SQL, plus manual, regression and UAT testing.","address":{"@type":"PostalAddress","addressLocality":"Chennai","addressRegion":"Tamil Nadu","addressCountry":"IN"},"worksFor":{"@type":"Organization","name":"Tenth Planet Technologies Pvt. Ltd."},"alumniOf":{"@type":"CollegeOrUniversity","name":"Dhanalakshmi Srinivasan College"},"knowsAbout":["Java","JDBC","Oracle SQL","iDempiere","Compiere","ERP","Manual Testing","Regression Testing","UAT"],"sameAs":["https://linkedin.com/in/santhoshb88"]}
+{"@context":"https://schema.org","@type":"Person","name":"Santhosh B","url":"https://santhoshbalaguru.website/","jobTitle":"Java Developer","description":"Portfolio of Santhosh B, a Java Developer in Chennai with 1+ year of experience building enterprise ERP applications on Compiere / iDempiere and Oracle SQL, plus manual, regression and UAT testing.","address":{"@type":"PostalAddress","addressLocality":"Chennai","addressRegion":"Tamil Nadu","addressCountry":"IN"},"worksFor":{"@type":"Organization","name":"Tenth Planet Technologies Pvt. Ltd."},"alumniOf":{"@type":"CollegeOrUniversity","name":"Dhanalakshmi Srinivasan College"},"knowsAbout":["Java","JDBC","Spring Boot","Oracle SQL","PostgreSQL","iDempiere","Compiere","ERP","Manual Testing","Regression Testing","UAT"],"sameAs":["https://linkedin.com/in/santhoshb88"]}
 </script>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e8590c'/%3E%3Ctext x='32' y='43' font-family='Arial,Helvetica,sans-serif' font-size='30' font-weight='700' text-anchor='middle' fill='white'%3ESB%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="/favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
 <script src="site.js"></script>
@@ -102,12 +102,12 @@
 <div class="eyebrow">Skills</div><h2>Tools of the trade</h2>
 <div class="skills" id="chips"><button class="chip on" data-f="all">All</button><button class="chip" data-f="code">Languages</button><button class="chip" data-f="erp">ERP &amp; Data</button><button class="chip" data-f="qa">Testing</button><button class="chip" data-f="tool">Tools</button></div>
 <div class="bars">
-<div class="sk" data-c="code"><h3>Java</h3><p>OOP, Collections, Exception Handling, JDBC</p></div>
+<div class="sk" data-c="code"><h3>Java</h3><p>OOP, Collections, Exception Handling, JDBC, Spring Boot</p></div>
 <div class="sk" data-c="code"><h3>SQL</h3><p>Oracle SQL queries &amp; optimization</p></div>
 <div class="sk" data-c="erp"><h3>ERP Framework</h3><p>Compiere, iDempiere</p></div>
-<div class="sk" data-c="erp"><h3>Database</h3><p>Oracle SQL · PostgreSQL</p></div>
+<div class="sk" data-c="erp"><h3>Database</h3><p>Oracle SQL · PostgreSQL · Flyway</p></div>
 <div class="sk" data-c="qa"><h3>Testing</h3><p>Manual, Black Box, Regression, UAT</p></div>
-<div class="sk" data-c="erp"><h3>Integrations</h3><p>REST/JSON APIs, OSGi plugins, GST e-invoicing (IRP)</p></div>
+<div class="sk" data-c="erp"><h3>Integrations</h3><p>REST/JSON APIs, OSGi plugins, webhooks, GST e-invoicing (IRP), Razorpay payment links</p></div>
 <div class="sk" data-c="tool"><h3>Tools</h3><p>Git, Eclipse</p></div>
 </div>
 </section>
@@ -129,9 +129,10 @@
 <section id="work" class="rv">
 <div class="eyebrow">Projects</div><h2>Selected work</h2>
 <div class="grid">
-<div class="card"><small>Plugin · iDempiere 13</small><h3>India GST E-Invoice (IRP) Plugin</h3><p>OSGi plugin that sends completed sales invoices, credit memos and debit notes to India's e-invoice system through the Whitebooks API. Maps each invoice to the IRP request, validates it against the official JSON schema, generates the IRN and stores the signed invoice, QR code and e-way bill details. Includes batch generation, IRN cancellation within the 24-hour window, duplicate-IRN recovery with verification, void/reverse guards, and a full audit trail of every attempt.</p><div class="pills"><span>Java 17</span><span>iDempiere 13</span><span>OSGi</span><span>Jackson</span><span>PostgreSQL</span><span>REST API</span><span>GST e-invoicing</span></div><a class="btn" href="/einvoice" style="margin-top:12px">View iDempiere E-Invoice plugin page →</a></div>
-<div class="card"><small>Key Project · Tenth Planet Technologies</small><h3>NGERP CENTRA</h3><p>Enterprise ERP on the Compiere / iDempiere framework. Implemented business logic and customizations across Purchase, Sales, Inventory and Accounting, optimized Oracle SQL for transactions and reporting, and fixed production defects through debugging and regression testing.</p><div class="pills"><span>Java</span><span>iDempiere</span><span>Oracle SQL</span><span>UAT</span></div></div>
-<div class="card"><small>Academic Project</small><h3>Surface Defect Detection using CNN</h3><p>Trained a Convolutional Neural Network to detect and classify scratches, dents and discolorations. Collected and annotated 10,000+ surface images and reached 86% classification accuracy.</p><div class="pills"><span>CNN</span><span>Deep Learning</span><span>Image Classification</span></div></div>
+<div class="card"><small>Plugin · iDempiere 13</small><h3>India GST E-Invoice (IRP) Plugin</h3><p>Generate and cancel IRNs straight from iDempiere invoices, with schema validation and a full audit trail.</p><div class="pills"><span>Java 17</span><span>OSGi</span><span>Whitebooks API</span><span>PostgreSQL</span></div><a class="btn" href="/einvoice" style="margin-top:12px">View project →</a></div>
+<div class="card"><small>Integration · iDempiere 13</small><h3>Razorpay Payment Link Plugin</h3><p>Email customers a payment link with their invoice and track payments through signed, idempotent webhooks.</p><div class="pills"><span>Spring Boot</span><span>OSGi</span><span>PostgreSQL</span><span>Razorpay</span></div><a class="btn" href="/paymentlink" style="margin-top:12px">View project →</a></div>
+<div class="card"><small>Key Project · Tenth Planet Technologies</small><h3>NGERP CENTRA</h3><p>Enterprise ERP on iDempiere: business logic, Oracle SQL tuning and production fixes across four modules.</p><div class="pills"><span>Java</span><span>iDempiere</span><span>Oracle SQL</span><span>UAT</span></div></div>
+<div class="card"><small>Academic Project</small><h3>Surface Defect Detection using CNN</h3><p>CNN that classifies scratches, dents and discolorations at 86% accuracy on 10,000+ images.</p><div class="pills"><span>CNN</span><span>Deep Learning</span></div></div>
 </div>
 </section>
 
