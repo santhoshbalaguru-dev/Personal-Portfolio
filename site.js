@@ -1,6 +1,7 @@
 /* Shared behaviour for every page of santhoshbalaguru.website.
    Load in <head> (no defer) so the saved theme is applied before first paint.
    - Theme: light by default, toggled with #theme, remembered across pages and tabs
+   - Mobile nav menu, active-section link highlight
    - Scroll progress bar, scroll reveal (.rv), stat counters ([data-n]) and cursor glow
    The #bar and #glow elements are created here, so pages need no extra markup. */
 (function(){
@@ -17,6 +18,26 @@
    var next=root.dataset.theme==='dark'?'light':'dark';
    apply(next);try{localStorage.setItem(KEY,next)}catch(e){}
   };
+  // mobile menu (hamburger under 900px)
+  var nv=document.querySelector('nav'),mb=document.getElementById('menu-btn');
+  if(nv&&mb){
+   var setOpen=function(o){nv.classList.toggle('open',o);mb.setAttribute('aria-expanded',o?'true':'false');mb.setAttribute('aria-label',o?'Close menu':'Open menu')};
+   mb.onclick=function(e){e.stopPropagation();setOpen(!nv.classList.contains('open'))};
+   nv.querySelectorAll('.links a').forEach(function(a){a.addEventListener('click',function(){setOpen(false)})});
+   document.addEventListener('click',function(e){if(!nv.contains(e.target))setOpen(false)});
+   addEventListener('keydown',function(e){if(e.key==='Escape'&&nv.classList.contains('open')){setOpen(false);mb.focus()}});
+   matchMedia('(min-width:981px)').addEventListener('change',function(){setOpen(false)});
+  }
+  // highlight the nav link of the section in view
+  var navLinks=[].slice.call(document.querySelectorAll('.links a[href^="#"]')),byId={};
+  navLinks.forEach(function(a){var s=document.getElementById(a.getAttribute('href').slice(1));if(s)byId[s.id]=a});
+  if(navLinks.length&&Object.keys(byId).length){
+   var spy=new IntersectionObserver(function(es){es.forEach(function(x){
+    if(!x.isIntersecting)return;
+    navLinks.forEach(function(l){l.classList.remove('on');l.removeAttribute('aria-current')});
+    byId[x.target.id].classList.add('on');byId[x.target.id].setAttribute('aria-current','location')})},{rootMargin:'-45% 0px -50% 0px'});
+   Object.keys(byId).forEach(function(id){spy.observe(document.getElementById(id))});
+  }
   // scroll progress bar
   var bar=document.createElement('div');bar.id='bar';document.body.prepend(bar);
   addEventListener('scroll',function(){var h=document.documentElement;

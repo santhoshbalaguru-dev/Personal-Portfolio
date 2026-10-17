@@ -3,17 +3,32 @@
    Page-specific styles stay in each page's own <style> block. */
 :root{--bg:#f6f5f1;--card:#fff;--ink:#14161a;--mute:#5d6470;--line:#e2e0d8;--acc:#e8590c;--acc2:#0b7285;--glow:rgba(232,89,12,.12);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 :root[data-theme="dark"]{--bg:#0e1013;--card:#171a1f;--ink:#eef0f3;--mute:#9aa3af;--line:#262b33;--acc:#ff8a4c;--acc2:#3bc9db;--glow:rgba(255,138,76,.14)}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px;overflow-x:hidden}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:96px;overflow-x:hidden}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Inter,system-ui,sans-serif}
 h1,h2,h3{font-family:'Space Grotesk',Inter,sans-serif;line-height:1.15;margin:0}
 a{color:inherit}
-/* nav */
-nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-nav b{font-family:'Space Grotesk',sans-serif;font-size:1.1rem}nav b span{color:var(--acc)}nav b a{text-decoration:none}
-.links{display:flex;gap:22px;align-items:center;font-size:.92rem}
-.links a{text-decoration:none;color:var(--mute);transition:.2s}.links a:hover{color:var(--acc)}
-#theme{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;width:36px;height:36px;cursor:pointer;font-size:1rem}
-@media(max-width:640px){.links a:not(.keep){display:none}}
+/* nav: floating pill, hamburger menu under 900px */
+nav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:10;display:flex;align-items:center;justify-content:space-between;gap:12px;width:min(1000px,calc(100% - 10vw));margin:12px auto 0;padding:7px 8px 7px 22px;border:1px solid var(--line);border-radius:99px;background:color-mix(in srgb,var(--card) 78%,transparent);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);box-shadow:0 8px 30px rgba(20,22,26,.08)}
+:root[data-theme="dark"] nav{box-shadow:0 8px 30px rgba(0,0,0,.45)}
+.brand{font:700 1.1rem 'Space Grotesk',sans-serif;text-decoration:none;white-space:nowrap}.brand span{color:var(--acc)}
+.links{display:flex;gap:2px;align-items:center;margin-left:auto;font-size:.88rem}
+.links a{text-decoration:none;color:var(--mute);padding:7px 12px;border-radius:99px;white-space:nowrap;transition:.2s}
+.links a:hover{color:var(--ink);background:color-mix(in srgb,var(--ink) 7%,transparent)}
+.links a.on{color:var(--acc);background:color-mix(in srgb,var(--acc) 13%,transparent)}
+.tools{display:flex;gap:6px;align-items:center}
+#theme,#menu-btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;width:38px;height:38px;cursor:pointer;font-size:1rem;padding:0}
+#menu-btn{display:none;place-items:center}
+#menu-btn .x{display:none}nav.open #menu-btn .a{display:none}nav.open #menu-btn .x{display:inline}
+.links a:focus-visible,#theme:focus-visible,#menu-btn:focus-visible,.brand:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+@media(max-width:1060px){.links{gap:0}.links a{padding:7px 9px;font-size:.85rem}}
+@media(max-width:980px){
+#menu-btn{display:inline-grid}
+.links{position:absolute;top:calc(100% + 10px);left:0;right:0;margin:0;flex-direction:column;align-items:stretch;gap:2px;padding:10px;background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:0 18px 40px rgba(20,22,26,.14);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .2s,transform .2s,visibility .2s}
+:root[data-theme="dark"] .links{box-shadow:0 18px 40px rgba(0,0,0,.55)}
+nav.open .links{opacity:1;visibility:visible;transform:none}
+.links a{padding:13px 16px;border-radius:14px;font-size:1rem}
+}
+@media(prefers-reduced-motion:reduce){.links{transition:none}}
 /* layout + type */
 section{max-width:1040px;margin:0 auto;padding:84px 5vw}
 .hero{padding-top:90px;position:relative}
