@@ -29,135 +29,142 @@
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/site.css">
 <script src="/site.js"></script>
 <style>
-/* product-page-only styles (shared theme, layout and animations are in site.css) */
-.stats{grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));margin-top:44px}
-.stat b{display:block;font-size:1.25rem}.stat span{margin-top:4px}
-.card{padding:24px}.card h3{font-size:1.2rem;margin:0 0 8px}.card p{margin:0;font-size:.95rem}
-.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:12px;counter-reset:s}
-.step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;counter-increment:s}
-.step:before{content:counter(s);display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--acc);color:#fff;font:700 .85rem 'Space Grotesk',sans-serif;margin-bottom:10px}
-.step h3{font-size:1rem;margin-bottom:4px}.step p{margin:0;color:var(--mute);font-size:.88rem}
-.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px}
-.box{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px}
-.box h3{font-size:1.2rem;margin-bottom:12px}
-.box ul{margin:0;padding-left:18px;color:var(--mute)}.box li{margin-bottom:7px}
-.box.soon{border-style:dashed}
-.case{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px}
-.case .box h3{font-size:1.1rem;margin-bottom:8px}.case .box p{margin:0;color:var(--mute);font-size:.95rem}
-.hard{margin-top:16px;border-left:4px solid var(--acc);border-radius:8px 20px 20px 8px}
-.hard h3{font-size:1.35rem;margin-bottom:10px}.hard p{color:var(--mute);margin:0 0 12px;max-width:760px}.hard p:last-child{margin:0}
-details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-bottom:10px}
-summary{cursor:pointer;font-weight:600}details p{color:var(--mute);margin:10px 0 0}
+/* e-invoice page: document / ledger layout. Shared theme and nav live in site.css */
+code{font-size:.9em;background:color-mix(in srgb,var(--ink) 8%,transparent);padding:1px 6px;border-radius:5px}
 .crumb{font-size:.85rem;color:var(--mute);margin:0 0 14px}.crumb a{color:var(--mute)}
-.cta{text-align:center}
-.cta .box{padding:52px 24px;border-radius:28px}.cta p{color:var(--mute);max-width:520px;margin:0 auto 26px}
+.rows>div{display:grid;grid-template-columns:minmax(120px,210px) minmax(0,1fr);gap:6px 28px;padding:16px 0;border-bottom:1px solid var(--line)}
+.rows>div:first-child{padding-top:0}.rows dt{font-weight:600}.rows dd{margin:0;color:var(--mute)}
+@media(max-width:680px){.rows>div{grid-template-columns:1fr}}
+details{border-bottom:1px solid var(--line);padding:14px 0}summary{cursor:pointer;font-weight:600}details p{color:var(--mute);margin:10px 0 0;max-width:64ch}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:28px}
+.cols ul{margin:0;padding-left:18px;color:var(--mute)}.cols li{margin-bottom:7px}
+.ei{--serif:'Newsreader',Georgia,serif}
+.ei h1{font:500 clamp(2.4rem,6.5vw,4.2rem)/1.04 var(--serif);letter-spacing:-.02em;margin:0 0 18px}
+.ei h2,.ei h3{font-family:var(--serif)}
+.hero2{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:48px;align-items:start}
+@media(max-width:860px){.hero2{grid-template-columns:1fr;gap:36px}}
+.facts{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:12px}
+.facts li{border-left:3px solid var(--acc);padding-left:14px;color:var(--mute);font-size:.92rem}.facts b{display:block;color:var(--ink)}
+.inv{background:var(--card);border:1px solid var(--ink);border-radius:4px;padding:22px 24px;font-size:.84rem;box-shadow:7px 7px 0 var(--line)}
+.inv h3{font-size:1.15rem;margin:0}.inv dl{margin:14px 0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:7px 16px}
+.inv dt{color:var(--mute)}.inv dd{margin:0;font-family:ui-monospace,Consolas,monospace;overflow-wrap:anywhere}
+.irn{border-top:1px dashed var(--mute);padding-top:14px;display:grid;grid-template-columns:minmax(0,1fr) 84px;gap:14px;align-items:center}
+.irn dd{color:var(--acc-text)}.irn dl{margin:0}
+.qr{width:84px;height:84px;border:6px solid var(--card);outline:1px solid var(--ink);background:repeating-conic-gradient(var(--ink) 0 25%,var(--card) 0 50%) 0 0/16px 16px}
+.inv small{display:block;margin-top:14px;color:var(--mute);font-style:italic}
+.led{display:grid;grid-template-columns:minmax(150px,220px) minmax(0,1fr);gap:20px 56px;border-top:1px solid var(--line);padding:56px 5vw}
+.led>h2{font-size:1.7rem;font-weight:500;margin:0;position:sticky;top:96px;align-self:start}
+@media(max-width:760px){.led{grid-template-columns:1fr}.led>h2{position:static}}
+.pr p{font:1.08rem/1.7 var(--serif);max-width:64ch;margin:0 0 16px}.pr b{font-family:Inter,sans-serif;font-size:.95rem}
+.pull{margin-top:26px;border-left:4px solid var(--acc);padding-left:22px}.pull h3{font-size:1.4rem;font-weight:500;margin-bottom:10px}
+.chain{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 0;font:.82rem ui-monospace,Consolas,monospace}
+.chain li{border:1px solid var(--line);background:var(--card);padding:6px 11px;border-radius:4px}
+.chain li+li:before{content:"›";color:var(--acc);margin:0 9px 0 4px;position:relative;left:-14px;margin-right:-4px}
+.chain li+li{margin-left:14px}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{position:relative;padding:0 0 22px 48px;counter-increment:s}
+.steps li:before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--acc);color:var(--on-acc);display:grid;place-items:center;font:700 .85rem Inter}
+.steps li:not(:last-child):after{content:"";position:absolute;left:14px;top:34px;bottom:4px;border-left:1px solid var(--line)}
+.steps b{display:block}.steps span{color:var(--mute);font-size:.95rem}
+.sign{border-top:1px solid var(--line);padding:72px 5vw}.sign h2{font:500 clamp(2rem,5vw,3.2rem)/1.1 var(--serif);margin-bottom:14px}
+.sign p{color:var(--mute);max-width:520px;margin:0 0 24px}
 </style>
 </head>
 <body>
 <nav aria-label="Main"><a class="brand" href="/" aria-label="Santhosh B home"><span>&lt;/&gt;</span> SB</a>
-<div class="links" id="menu"><a href="#case">Case study</a><a href="#features">Features</a><a href="#who">Who it's for</a><a href="#how">How it works</a><a href="#requirements">Requirements</a><a href="#faq">FAQ</a><a href="/">← Portfolio</a><a href="#contact">Get a quote</a></div>
+<div class="links" id="menu"><a href="#case">Case study</a><a href="#how">How it works</a><a href="#features">Features</a><a href="#who">Who it's for</a><a href="#requirements">Requirements</a><a href="#faq">FAQ</a><a class="nav-btn" href="#contact">Get a quote</a></div>
 <div class="tools"><button id="theme" aria-label="Toggle theme">◐</button><button id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path class="a" d="M3 5h12M3 9h12M3 13h12"/><path class="x" d="M4 4l10 10M14 4L4 14"/></svg></button></div></nav>
-
-<main>
-<section class="hero">
+<main class="ei">
+<section class="hero hero2">
+<div>
 <p class="crumb"><a href="/">Home</a> › iDempiere E-Invoice Plugin</p>
-<span class="tag">iDempiere 13 · India GST · Whitebooks API</span>
-<h1>India GST e-invoicing, <em>built into iDempiere</em></h1>
+<h1>India GST e-invoicing, built into iDempiere</h1>
 <p class="lead">An installable plugin that sends completed sales invoices, credit memos and debit notes from iDempiere to the Indian e-invoice system (IRP), then stores the IRN, signed invoice and QR code on the document. Validation, cancellation and recovery are handled, so your team does not have to key invoices into a portal.</p>
 <a class="btn" href="#contact">Request a quote or demo</a><a class="btn o" href="#features">See what it does</a>
-<div class="stats">
-<div class="stat"><b>IRN generation</b><span>Single invoice or a date-range batch</span></div>
-<div class="stat"><b>Schema-validated</b><span>Checked against the IRP JSON schema before any API call</span></div>
-<div class="stat"><b>Cancel &amp; protect</b><span>24-hour cancellation, void/reverse guards</span></div>
-<div class="stat"><b>Full audit trail</b><span>Every attempt stored with the raw response</span></div>
+<ul class="facts"><li><b>IRN generation</b>Single invoice or a date-range batch</li><li><b>Schema-validated</b>Checked against the IRP JSON schema before any API call</li><li><b>Cancel &amp; protect</b>24-hour cancellation, void/reverse guards</li><li><b>Full audit trail</b>Every attempt stored with the raw response</li></ul>
 </div>
+<aside class="inv" aria-label="Sample of what the plugin stores on an invoice">
+<h3>Tax invoice</h3>
+<dl><dt>Invoice no.</dt><dd>INV-2026-0142</dd><dt>Date</dt><dd>17/10/2026</dd><dt>Supplier GSTIN</dt><dd>29AAAAA0000A1Z5</dd><dt>Buyer GSTIN</dt><dd>27BBBBB1111B1Z5</dd><dt>Total</dt><dd>₹1,18,000.00</dd></dl>
+<div class="irn"><dl><dt>IRN</dt><dd>9c1f…e07a</dd><dt>Ack no.</dt><dd>saved</dd><dt>Signed invoice</dt><dd>saved</dd></dl><div class="qr" role="img" aria-label="QR code placeholder"></div></div>
+<small>Sample layout with made-up values. On a real invoice the plugin saves the IRN, acknowledgement, signed invoice and QR code.</small>
+</aside>
 </section>
 
-<section id="case" class="rv">
-<div class="eyebrow">Case study</div><h2>The problem, the build, the result</h2>
-<div class="case">
-<div class="box"><h3>Problem</h3><p>Indian businesses must register every B2B invoice with the government e-invoice system (IRP) and get an IRN back. For a company on iDempiere, that meant keying invoices into a portal by hand, or building a one-off integration for each project.</p></div>
-<div class="box"><h3>Approach</h3><p>An OSGi plugin maps each completed invoice to the IRP request and checks it against the official JSON schema before any API call, so errors come back in plain language and name the invoice line. It then registers the invoice through Whitebooks and stores the IRN, signed invoice and QR code on the document. Every attempt is kept with its raw response.</p></div>
-<div class="box"><h3>Result</h3><p>One invoice or a whole date range can be registered from a single process, and each invoice in a batch succeeds or fails on its own. IRNs can be cancelled within the 24-hour window, and invoices with an active IRN are protected from being voided by mistake. Developed and tested against the Whitebooks sandbox.</p></div>
-</div>
-<div class="box hard"><h3>The hard part: an IRN that already exists</h3>
+<section id="case" class="led"><h2>The problem, the build, the result</h2>
+<div class="pr">
+<p><b>Problem.</b> Indian businesses must register every B2B invoice with the government e-invoice system (IRP) and get an IRN back. For a company on iDempiere, that meant keying invoices into a portal by hand, or building a one-off integration for each project.</p>
+<p><b>Approach.</b> An OSGi plugin maps each completed invoice to the IRP request and checks it against the official JSON schema before any API call, so errors come back in plain language and name the invoice line. It then registers the invoice through Whitebooks and stores the IRN, signed invoice and QR code on the document. Every attempt is kept with its raw response.</p>
+<p><b>Result.</b> One invoice or a whole date range can be registered from a single process, and each invoice in a batch succeeds or fails on its own. IRNs can be cancelled within the 24-hour window, and invoices with an active IRN are protected from being voided by mistake. Developed and tested against the Whitebooks sandbox.</p>
+<div class="pull"><h3>The hard part: an IRN that already exists</h3>
 <p>The IRP will not register the same invoice twice, so it answers with an error saying the IRN already exists. That can happen when a call succeeded at the IRP but the response never made it back, leaving iDempiere with no IRN for an invoice that already has one. Retrying can never fix this.</p>
-<p>The plugin treats that error as a recovery path. It fetches the existing IRN from the IRP and checks that document type, number, date, both GSTINs and the total all match the invoice before attaching it. If anything differs, it refuses and reports the mismatch, so a wrong IRN is never silently stored on an invoice.</p></div>
-</section>
+<p>The plugin treats that error as a recovery path. It fetches the existing IRN from the IRP and checks that document type, number, date, both GSTINs and the total all match the invoice before attaching it. If anything differs, it refuses and reports the mismatch, so a wrong IRN is never silently stored on an invoice.</p>
+<ol class="chain" aria-label="Recovery sequence"><li>IRN already exists</li><li>Fetch it from the IRP</li><li>Match six fields</li><li>Attach, or refuse</li></ol></div>
+</div></section>
 
-<section id="how" class="rv">
-<div class="eyebrow">How it works</div><h2>From completed invoice to IRN</h2>
-<div class="flow">
-<div class="step"><h3>Complete the invoice</h3><p>Fill the few e-invoice fields that apply: supply type, reverse charge, export or e-way details.</p></div>
-<div class="step"><h3>Run the process</h3><p>"Generate E-Invoice (IRN)" for one invoice, or a date range for many.</p></div>
-<div class="step"><h3>Map &amp; validate</h3><p>The invoice becomes the IRP request and is checked field by field, with readable errors.</p></div>
-<div class="step"><h3>Register with IRP</h3><p>Authenticates, calls GENERATE through Whitebooks and handles token expiry.</p></div>
-<div class="step"><h3>Stored on the invoice</h3><p>IRN, acknowledgement, signed invoice, QR and e-way bill details are saved.</p></div>
-</div>
-</section>
+<section id="how" class="led"><h2>From completed invoice to IRN</h2>
+<ol class="steps">
+<li><b>Complete the invoice</b><span>Fill the few e-invoice fields that apply: supply type, reverse charge, export or e-way details.</span></li>
+<li><b>Run the process</b><span>"Generate E-Invoice (IRN)" for one invoice, or a date range for many.</span></li>
+<li><b>Map &amp; validate</b><span>The invoice becomes the IRP request and is checked field by field, with readable errors.</span></li>
+<li><b>Register with IRP</b><span>Authenticates, calls GENERATE through Whitebooks and handles token expiry.</span></li>
+<li><b>Stored on the invoice</b><span>IRN, acknowledgement, signed invoice, QR and e-way bill details are saved.</span></li>
+</ol></section>
 
-<section id="features" class="rv">
-<div class="eyebrow">Features</div><h2>What you get</h2>
-<div class="grid">
-<div class="card"><h3>Generate IRN</h3><p>Sales invoices, credit memos and debit notes. B2B, SEZ, export and deemed export supply types, reverse charge and IGST on intra-state supply.</p></div>
-<div class="card"><h3>Batch registration</h3><p>Register every completed sales invoice in a date range that has no IRN yet. Each invoice succeeds or fails on its own, with a log line per invoice.</p></div>
-<div class="card"><h3>Cancel IRN</h3><p>Cancel the IRN of a reversed invoice within the IRP's 24-hour window, with cancel reason and remarks.</p></div>
-<div class="card"><h3>Duplicate recovery</h3><p>If the IRP says the IRN already exists, the plugin fetches it and verifies document type, number, date, GSTINs and total before attaching it.</p></div>
-<div class="card"><h3>Invoice protection</h3><p>Blocks void or reverse of an invoice with an active IRN after 24 hours and blocks reactivation, steering users to a credit memo.</p></div>
-<div class="card"><h3>Clear validation</h3><p>Missing GSTIN, address, HSN, tax or state mismatches and rounding problems are reported in plain language, naming the invoice line.</p></div>
-<div class="card"><h3>Tax and discount handling</h3><p>CGST/SGST/IGST/cess split by supply type, foreign-currency invoices converted to INR, and discount lines deducted from matching taxed lines.</p></div>
-<div class="card"><h3>E-way bill details</h3><p>Part A transport details are sent with the IRN when the shipment carries them, and the returned e-way bill number is stored.</p></div>
-<div class="card"><h3>Per-organization setup</h3><p>IRP credentials are kept per client or per organization in an E-Invoice Configuration window, restricted to administrator roles.</p></div>
-</div>
-</section>
+<section id="features" class="led"><h2>What you get</h2>
+<dl class="rows">
+<div><dt>Generate IRN</dt><dd>Sales invoices, credit memos and debit notes. B2B, SEZ, export and deemed export supply types, reverse charge and IGST on intra-state supply.</dd></div>
+<div><dt>Batch registration</dt><dd>Register every completed sales invoice in a date range that has no IRN yet. Each invoice succeeds or fails on its own, with a log line per invoice.</dd></div>
+<div><dt>Cancel IRN</dt><dd>Cancel the IRN of a reversed invoice within the IRP's 24-hour window, with cancel reason and remarks.</dd></div>
+<div><dt>Duplicate recovery</dt><dd>If the IRP says the IRN already exists, the plugin fetches it and verifies document type, number, date, GSTINs and total before attaching it.</dd></div>
+<div><dt>Invoice protection</dt><dd>Blocks void or reverse of an invoice with an active IRN after 24 hours and blocks reactivation, steering users to a credit memo.</dd></div>
+<div><dt>Clear validation</dt><dd>Missing GSTIN, address, HSN, tax or state mismatches and rounding problems are reported in plain language, naming the invoice line.</dd></div>
+<div><dt>Tax and discount handling</dt><dd>CGST/SGST/IGST/cess split by supply type, foreign-currency invoices converted to INR, and discount lines deducted from matching taxed lines.</dd></div>
+<div><dt>E-way bill details</dt><dd>Part A transport details are sent with the IRN when the shipment carries them, and the returned e-way bill number is stored.</dd></div>
+<div><dt>Per-organization setup</dt><dd>IRP credentials are kept per client or per organization in an E-Invoice Configuration window, restricted to administrator roles.</dd></div>
+</dl></section>
 
-<section id="who" class="rv">
-<div class="eyebrow">Who it's for</div><h2>Made for iDempiere teams in India</h2>
-<div class="grid">
-<div class="card"><h3>Indian companies on iDempiere</h3><p>Businesses that issue GST invoices from iDempiere and want IRNs, signed invoices and QR codes created automatically instead of keyed into a portal.</p></div>
-<div class="card"><h3>iDempiere partners and consultants</h3><p>Implementers serving Indian clients who need a ready e-invoicing integration with documented setup, instead of building one per project.</p></div>
-<div class="card"><h3>In-house ERP teams</h3><p>Teams who want clear validation messages, a full audit trail of every IRP call and safeguards that stop invoices with an active IRN being voided by mistake.</p></div>
-</div>
-</section>
+<section id="who" class="led"><h2>Made for iDempiere teams in India</h2>
+<div class="pr">
+<p><b>Indian companies on iDempiere.</b> Businesses that issue GST invoices from iDempiere and want IRNs, signed invoices and QR codes created automatically instead of keyed into a portal.</p>
+<p><b>iDempiere partners and consultants.</b> Implementers serving Indian clients who need a ready e-invoicing integration with documented setup, instead of building one per project.</p>
+<p><b>In-house ERP teams.</b> Teams who want clear validation messages, a full audit trail of every IRP call and safeguards that stop invoices with an active IRN being voided by mistake.</p>
+</div></section>
 
-<section id="requirements" class="rv">
-<div class="eyebrow">Requirements &amp; delivery</div><h2>What you need, what you receive</h2>
-<div class="two">
-<div class="box"><h3>You need</h3><ul>
+<section id="requirements" class="led"><h2>What you need, what you receive</h2>
+<div class="cols">
+<div><h3>You need</h3><ul>
 <li>iDempiere 13 on Java 17 with PostgreSQL</li>
 <li>A GSTIN enabled for e-invoicing and an API user on the e-invoice portal</li>
 <li>A Whitebooks account (client ID, secret and registered email)</li>
 <li>Server access to the Whitebooks host over HTTPS; production IPs must be whitelisted with the provider</li>
 <li>HSN/SAC codes on products and charges, and GST state codes on regions</li></ul></div>
-<div class="box"><h3>You receive</h3><ul>
+<div><h3>You receive</h3><ul>
 <li>The OSGi plugin bundle for iDempiere 13</li>
 <li>A re-runnable database setup script (tables, columns, window, processes, menus, access)</li>
 <li>Full documentation: installation, configuration, master data, mapping rules and troubleshooting</li>
 <li>A stand-alone test runner to check requests against the sandbox without touching your database</li></ul></div>
-</div>
-</section>
+</div></section>
 
-<section class="rv">
-<div class="eyebrow">Roadmap</div><h2>Honest about scope</h2>
-<div class="two">
-<div class="box soon"><h3>Not included yet</h3><ul>
+<section class="led"><h2>Honest about scope</h2>
+<div class="cols">
+<div><h3>Not included yet</h3><ul>
 <li>Buttons on the invoice window and QR code on the printed invoice</li>
 <li>A separate e-way bill plugin (planned)</li>
 <li>Dispatch-from and additional-document sections</li>
 <li>IRP error-code mapping</li></ul></div>
-<div class="box soon"><h3>Worth knowing</h3><ul>
+<div><h3>Worth knowing</h3><ul>
 <li>Debit notes use a custom document base type, so test accounting posting before relying on it</li>
 <li>Child taxes must carry CGST, SGST, IGST or CESS in their names</li>
 <li>Developed and tested against the Whitebooks sandbox; confirm production requirements with your provider</li></ul></div>
-</div>
-</section>
+</div></section>
 
-<section id="faq" class="rv">
-<div class="eyebrow">FAQ</div><h2>Common questions</h2>
+<section id="faq" class="led"><h2>Common questions</h2>
+<div>
 <details><summary>Does the plugin work with iDempiere 13?</summary><p>Yes. It is built for iDempiere 13 on Java 17 and PostgreSQL, as an OSGi plugin installed like any other iDempiere bundle.</p></details>
 <details><summary>Which API provider does it use?</summary><p>Whitebooks GSP. You use your own Whitebooks credentials and your own GSTIN; the plugin does not route invoices through anyone else.</p></details>
 <details><summary>Does it replace my GST Suvidha Provider (GSP)?</summary><p>No. It is the integration between iDempiere and the e-invoice system. You still need a Whitebooks account and an API user on the e-invoice portal.</p></details>
@@ -165,17 +172,16 @@ summary{cursor:pointer;font-weight:600}details p{color:var(--mute);margin:10px 0
 <details><summary>What if an invoice was sent by mistake?</summary><p>Reverse it and cancel the IRN within 24 hours. After that, issue a credit memo. The plugin enforces this so users do not end up with an inconsistent state.</p></details>
 <details><summary>Are my IRP credentials safe?</summary><p>Password, client ID and secret are stored in encrypted columns and kept out of the change log. Encryption depends on your iDempiere Secure class, so the documentation explains how to verify it before entering production credentials.</p></details>
 <details><summary>Can it be customized for my setup?</summary><p>Mapping rules, extra fields and workflow changes can be discussed. Tell me what you need when you get in touch.</p></details>
-</section>
+</div></section>
 
-<section id="contact" class="cta rv">
-<div class="box"><div class="eyebrow">Get the plugin</div><h2>Want it for your iDempiere?</h2>
+<section id="contact" class="sign"><h2>Want it for your iDempiere?</h2>
 <p>Tell me your iDempiere version, volume of invoices and API provider, and I'll reply with pricing and next steps.</p>
 <a class="btn" href="mailto:santhoshbalaguru88@gmail.com?subject=iDempiere%20E-Invoice%20Plugin%20enquiry">Email for pricing</a>
 <a class="btn o" href="https://linkedin.com/in/santhoshb88" target="_blank" rel="noopener">LinkedIn</a>
-<a class="btn o" href="tel:+918148974874">8148974874</a></div>
-</section>
+<a class="btn o" href="tel:+918148974874">8148974874</a></section>
+
+<section><a class="card next" href="/paymentlink"><small>Next project</small><h3>Razorpay Payment Link Plugin</h3><p>Email customers a payment link with their invoice and track payments through signed, idempotent webhooks.</p><span class="go">View project →</span></a></section>
 </main>
 <footer>© 2026 Santhosh B · Chennai, Tamil Nadu · <a href="/">Back to portfolio</a></footer>
-
 </body>
 </html>

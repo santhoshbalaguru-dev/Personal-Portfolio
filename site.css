@@ -1,8 +1,8 @@
 /* Shared styles for every page of santhoshbalaguru.website.
    Theme tokens, layout, components, glow and animations live here.
    Page-specific styles stay in each page's own <style> block. */
-:root{--bg:#f6f5f1;--card:#fff;--ink:#14161a;--mute:#5d6470;--line:#e2e0d8;--acc:#e8590c;--acc2:#0b7285;--glow:rgba(232,89,12,.12);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-:root[data-theme="dark"]{--bg:#0e1013;--card:#171a1f;--ink:#eef0f3;--mute:#9aa3af;--line:#262b33;--acc:#ff8a4c;--acc2:#3bc9db;--glow:rgba(255,138,76,.14)}
+:root{--bg:#f6f5f1;--card:#fff;--ink:#14161a;--mute:#5d6470;--line:#e2e0d8;--acc:#e8590c;--acc2:#0b7285;--glow:rgba(232,89,12,.12);--on-acc:#fff;--acc-text:#b8460a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root[data-theme="dark"]{--bg:#0e1013;--card:#171a1f;--ink:#eef0f3;--mute:#9aa3af;--line:#262b33;--acc:#ff8a4c;--acc2:#3bc9db;--glow:rgba(255,138,76,.14);--on-acc:#14161a;--acc-text:#ff8a4c}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:96px;overflow-x:hidden}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Inter,system-ui,sans-serif}
 h1,h2,h3{font-family:'Space Grotesk',Inter,sans-serif;line-height:1.15;margin:0}
@@ -14,12 +14,14 @@ nav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:10;dis
 .links{display:flex;gap:2px;align-items:center;margin-left:auto;font-size:.88rem}
 .links a{text-decoration:none;color:var(--mute);padding:7px 12px;border-radius:99px;white-space:nowrap;transition:.2s}
 .links a:hover{color:var(--ink);background:color-mix(in srgb,var(--ink) 7%,transparent)}
-.links a.on{color:var(--acc);background:color-mix(in srgb,var(--acc) 13%,transparent)}
+.links a.on{color:var(--acc-text);background:color-mix(in srgb,var(--acc) 13%,transparent)}
 .tools{display:flex;gap:6px;align-items:center}
 #theme,#menu-btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;width:38px;height:38px;cursor:pointer;font-size:1rem;padding:0}
 #menu-btn{display:none;place-items:center}
 #menu-btn .x{display:none}nav.open #menu-btn .a{display:none}nav.open #menu-btn .x{display:inline}
 .links a:focus-visible,#theme:focus-visible,#menu-btn:focus-visible,.brand:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.links a.nav-btn,.links a.nav-btn.on,.links a.nav-btn:hover{background:var(--acc);color:var(--on-acc);font-weight:600}
+.links a.nav-btn{margin-left:6px}.links a.nav-btn:hover{filter:brightness(1.1)}
 @media(max-width:1060px){.links{gap:0}.links a{padding:7px 9px;font-size:.85rem}}
 @media(max-width:980px){
 #menu-btn{display:inline-grid}
@@ -27,6 +29,7 @@ nav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:10;dis
 :root[data-theme="dark"] .links{box-shadow:0 18px 40px rgba(0,0,0,.55)}
 nav.open .links{opacity:1;visibility:visible;transform:none}
 .links a{padding:13px 16px;border-radius:14px;font-size:1rem}
+.links a.nav-btn{margin:6px 0 0;text-align:center}
 }
 @media(prefers-reduced-motion:reduce){.links{transition:none}}
 /* layout + type */
@@ -42,7 +45,7 @@ h1 em{font-style:normal;color:var(--acc)}
 .eyebrow{font:500 .8rem 'Space Grotesk',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:10px}
 h2{font-size:clamp(1.8rem,4.5vw,2.6rem);margin-bottom:32px}
 /* components */
-.btn{display:inline-block;max-width:100%;overflow-wrap:anywhere;padding:12px 24px;border-radius:12px;background:var(--acc);color:#fff;text-decoration:none;font-weight:600;margin:0 10px 10px 0;transition:.2s;border:1px solid var(--acc)}
+.btn{display:inline-block;max-width:100%;overflow-wrap:anywhere;padding:12px 24px;border-radius:12px;background:var(--acc);color:var(--on-acc);text-decoration:none;font-weight:600;margin:0 10px 10px 0;transition:.2s;border:1px solid var(--acc)}
 .btn.o{background:transparent;color:var(--ink);border-color:var(--line)}.btn:hover{transform:translateY(-2px)}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr));gap:14px;margin-top:48px}
 .stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
@@ -52,6 +55,10 @@ h2{font-size:clamp(1.8rem,4.5vw,2.6rem);margin-bottom:32px}
 .card:hover{transform:translateY(-4px);border-color:var(--acc);box-shadow:0 14px 34px var(--glow)}
 .card small{color:var(--acc2);font-weight:600}.card h3{font-size:1.35rem;margin:8px 0 10px}.card p{color:var(--mute);margin:0 0 14px}
 .pills span{display:inline-block;font-size:.76rem;padding:3px 10px;margin:0 6px 6px 0;border-radius:99px;background:var(--bg);border:1px solid var(--line);color:var(--mute)}
+a.next{display:block;text-decoration:none;color:inherit;padding:28px!important}
+a.next small{color:var(--acc2);font-weight:600}
+a.next h3{margin:6px 0 8px!important}a.next p{margin:0 0 14px!important;color:var(--mute)}
+a.next .go{color:var(--acc-text);font-weight:600}
 footer{text-align:center;color:var(--mute);font-size:.85rem;padding:30px 5vw 50px}
 /* animations: scroll reveal, cursor glow, progress bar (driven by site.js) */
 .rv{opacity:0;transform:translateY(24px);transition:.7s}.rv.v{opacity:1;transform:none}
