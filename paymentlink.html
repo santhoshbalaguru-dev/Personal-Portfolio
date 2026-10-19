@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Razorpay Payment Link Plugin for iDempiere ERP | Santhosh B</title>
-<meta name="description" content="iDempiere 13 plugin and Spring Boot service that emails customers a Razorpay payment link with their invoice, with signed, idempotent webhooks.">
+<meta name="description" content="iDempiere 13 plugin and Spring Boot service: email a Razorpay payment link with the invoice, then post the payment back to iDempiere automatically.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="#e8590c">
 <meta name="author" content="Santhosh B">
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_IN">
 <meta property="og:title" content="Razorpay Payment Link Plugin for iDempiere ERP | Santhosh B">
-<meta property="og:description" content="iDempiere 13 plugin and Spring Boot service that emails customers a Razorpay payment link with their invoice, with signed, idempotent webhooks.">
+<meta property="og:description" content="iDempiere 13 plugin and Spring Boot service: email a Razorpay payment link with the invoice, then post the payment back to iDempiere automatically.">
 <meta property="og:url" content="https://santhoshbalaguru.website/paymentlink">
 <meta property="og:site_name" content="Santhosh B">
 <meta property="og:image" content="https://santhoshbalaguru.website/paymentlink-og.png">
@@ -21,10 +21,10 @@
 <meta property="og:image:alt" content="Razorpay Payment Link integration for iDempiere ERP invoices">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Razorpay Payment Link Plugin for iDempiere ERP | Santhosh B">
-<meta name="twitter:description" content="iDempiere 13 plugin and Spring Boot service that emails customers a Razorpay payment link with their invoice, with signed, idempotent webhooks.">
+<meta name="twitter:description" content="iDempiere 13 plugin and Spring Boot service: email a Razorpay payment link with the invoice, then post the payment back to iDempiere automatically.">
 <meta name="twitter:image" content="https://santhoshbalaguru.website/paymentlink-og.png">
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://santhoshbalaguru.website/paymentlink#page", "url": "https://santhoshbalaguru.website/paymentlink", "name": "Razorpay Payment Link Plugin for iDempiere ERP | Santhosh B", "description": "iDempiere 13 plugin and Spring Boot service that emails customers a Razorpay payment link with their invoice, with signed, idempotent webhooks.", "inLanguage": "en-IN", "isPartOf": {"@type": "WebSite", "name": "Santhosh B", "url": "https://santhoshbalaguru.website/"}, "primaryImageOfPage": "https://santhoshbalaguru.website/paymentlink-og.png", "breadcrumb": {"@id": "https://santhoshbalaguru.website/paymentlink#crumbs"}, "mainEntity": {"@id": "https://santhoshbalaguru.website/paymentlink#software"}}, {"@type": "SoftwareApplication", "@id": "https://santhoshbalaguru.website/paymentlink#software", "name": "Payment Link Integration for iDempiere ERP", "applicationCategory": "BusinessApplication", "applicationSubCategory": "ERP plugin", "operatingSystem": "Java 17 (iDempiere 13, PostgreSQL)", "softwareRequirements": "iDempiere 13, Java 17, PostgreSQL, Razorpay account", "description": "iDempiere 13 plugin and Spring Boot service that emails customers a Razorpay payment link with their invoice, with signed, idempotent webhooks.", "url": "https://santhoshbalaguru.website/paymentlink", "image": "https://santhoshbalaguru.website/paymentlink-og.png", "author": {"@type": "Person", "name": "Santhosh B", "url": "https://santhoshbalaguru.website/", "sameAs": ["https://linkedin.com/in/santhoshb88"]}}, {"@type": "BreadcrumbList", "@id": "https://santhoshbalaguru.website/paymentlink#crumbs", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://santhoshbalaguru.website/"}, {"@type": "ListItem", "position": 2, "name": "iDempiere Payment Link Plugin", "item": "https://santhoshbalaguru.website/paymentlink"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does it work with iDempiere 13?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The ERP side is an OSGi plugin for iDempiere 13 on Java 17 and PostgreSQL. A separate Spring Boot service talks to the payment gateway."}}, {"@type": "Question", "name": "Which payment gateway does it use?", "acceptedAnswer": {"@type": "Answer", "text": "Razorpay Payment Links. The service is gateway-neutral, so another provider can be added with one gateway implementation and one webhook adapter, without changing the ERP plugin."}}, {"@type": "Question", "name": "Can it email every open invoice at once?", "acceptedAnswer": {"@type": "Answer", "text": "No, by design. The process needs at least one filter (invoice, date range, business partner, document type, organization or due date), so a bulk send can never go to every open invoice by accident."}}, {"@type": "Question", "name": "What happens if the invoice amount changes after a link was sent?", "acceptedAnswer": {"@type": "Answer", "text": "The old link is cancelled at the gateway and a new one is issued for the new open amount, so only one live link exists per invoice."}}, {"@type": "Question", "name": "Are gateway retries and duplicate webhooks safe?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Webhook signatures are verified with HMAC-SHA256, and each event is deduplicated atomically in the same transaction as the state change, so retries are never skipped or applied twice."}}, {"@type": "Question", "name": "Does it record the payment in iDempiere automatically?", "acceptedAnswer": {"@type": "Answer", "text": "Payment capture and verification are working. Creating and completing the matching iDempiere payment against the invoice is the next phase and is not released yet."}}, {"@type": "Question", "name": "Has it been used with live payments?", "acceptedAnswer": {"@type": "Answer", "text": "Not yet. It has been developed and tested in Razorpay test mode, including a real payment arriving through a webhook tunnel. Confirm production requirements before going live."}}]}]}
+{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://santhoshbalaguru.website/paymentlink#page", "url": "https://santhoshbalaguru.website/paymentlink", "name": "Razorpay Payment Link Plugin for iDempiere ERP | Santhosh B", "description": "iDempiere 13 plugin and Spring Boot service: email a Razorpay payment link with the invoice, then post the payment back to iDempiere automatically.", "inLanguage": "en-IN", "isPartOf": {"@type": "WebSite", "name": "Santhosh B", "url": "https://santhoshbalaguru.website/"}, "primaryImageOfPage": "https://santhoshbalaguru.website/paymentlink-og.png", "breadcrumb": {"@id": "https://santhoshbalaguru.website/paymentlink#crumbs"}, "mainEntity": {"@id": "https://santhoshbalaguru.website/paymentlink#software"}}, {"@type": "SoftwareApplication", "@id": "https://santhoshbalaguru.website/paymentlink#software", "name": "Payment Link Integration for iDempiere ERP", "applicationCategory": "BusinessApplication", "applicationSubCategory": "ERP plugin", "operatingSystem": "Java 17 (iDempiere 13, PostgreSQL)", "softwareRequirements": "iDempiere 13, Java 17, PostgreSQL, Razorpay account", "description": "iDempiere 13 plugin and Spring Boot service: email a Razorpay payment link with the invoice, then post the payment back to iDempiere automatically.", "url": "https://santhoshbalaguru.website/paymentlink", "image": "https://santhoshbalaguru.website/paymentlink-og.png", "author": {"@type": "Person", "name": "Santhosh B", "url": "https://santhoshbalaguru.website/", "sameAs": ["https://linkedin.com/in/santhoshb88"]}}, {"@type": "BreadcrumbList", "@id": "https://santhoshbalaguru.website/paymentlink#crumbs", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://santhoshbalaguru.website/"}, {"@type": "ListItem", "position": 2, "name": "iDempiere Payment Link Plugin", "item": "https://santhoshbalaguru.website/paymentlink"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does it work with iDempiere 13?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The ERP side is an OSGi plugin for iDempiere 13 on Java 17 and PostgreSQL. A separate Spring Boot service talks to the payment gateway."}}, {"@type": "Question", "name": "Which payment gateway does it use?", "acceptedAnswer": {"@type": "Answer", "text": "Razorpay Payment Links. The service is gateway-neutral, so another provider can be added with one gateway implementation and one webhook adapter, without changing the ERP plugin."}}, {"@type": "Question", "name": "Can it email every open invoice at once?", "acceptedAnswer": {"@type": "Answer", "text": "No, by design. The process needs at least one filter (invoice, date range, business partner, document type, organization or due date), so a bulk send can never go to every open invoice by accident."}}, {"@type": "Question", "name": "What is the difference between Resend and Regenerate?", "acceptedAnswer": {"@type": "Answer", "text": "Resend emails the existing link again. Regenerate cancels the old link at the gateway and issues a new one. The old row stays in the history as Cancelled."}}, {"@type": "Question", "name": "What happens if the invoice amount changes after a link was sent?", "acceptedAnswer": {"@type": "Answer", "text": "The old link is cancelled at the gateway and a new one is issued for the new open amount, so only one live link exists per invoice."}}, {"@type": "Question", "name": "Are gateway retries and duplicate webhooks safe?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Webhook signatures are verified with HMAC-SHA256, and each event is deduplicated atomically in the same transaction as the state change, so retries are never skipped or applied twice."}}, {"@type": "Question", "name": "Does it record the payment in iDempiere automatically?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. iDempiere pulls paid links from the service on a schedule (every 5 minutes by default) or on demand, creates and completes a customer receipt against the invoice, and confirms back to the service. Amount and currency are checked first."}}, {"@type": "Question", "name": "What if the customer pays a different amount?", "acceptedAnswer": {"@type": "Answer", "text": "The link is flagged as an amount mismatch for review, no payment is posted automatically, and no new link is issued until iDempiere has recorded it. After review, only Regenerate issues a new link."}}, {"@type": "Question", "name": "Has it been used with live payments?", "acceptedAnswer": {"@type": "Answer", "text": "Not yet. It has been developed and tested in Razorpay test mode, including a real payment arriving through a webhook tunnel. Confirm production requirements before going live."}}]}]}
 </script>
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,7 +47,7 @@ details{border-bottom:1px solid var(--line);padding:14px 0}summary{cursor:pointe
 .dk .btn.o{color:var(--pi);border-color:var(--pl)}
 .pipe{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
 .pipe li{position:relative;padding:16px 14px;border:1px solid var(--pl);border-radius:12px;margin-right:26px;background:var(--bg)}
-.pipe li:last-child{margin-right:0;border-style:dashed}
+.pipe li:last-child{margin-right:0}
 .pipe li:not(:last-child):after{content:"▸";position:absolute;right:-21px;top:50%;transform:translateY(-50%);color:var(--pa)}
 .pipe small{display:block;color:var(--pc);font-size:.76rem;margin-bottom:6px}.pipe b{display:block;font:600 1rem 'Space Grotesk',sans-serif;margin-bottom:6px}
 .pipe p{margin:0;font-size:.84rem;color:var(--pm);line-height:1.5}
@@ -57,7 +57,6 @@ details{border-bottom:1px solid var(--line);padding:14px 0}summary{cursor:pointe
 .tabs button{background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;padding:10px 14px;font:600 .95rem Inter,sans-serif;color:var(--mute);cursor:pointer}
 .tabs button[aria-selected=true]{color:var(--ink);border-color:var(--acc)}.tabs button:focus-visible{outline:2px solid var(--acc)}
 .pn[hidden]{display:none}
-.badge{display:inline-block;font-size:.72rem;font-weight:600;padding:2px 9px;margin-left:8px;border-radius:99px;border:1px dashed var(--acc);color:var(--acc-text)}
 .gx>div{display:grid;grid-template-columns:minmax(150px,.8fr) minmax(0,1.7fr);gap:6px 32px;padding:15px 0;border-bottom:1px solid var(--line)}
 .gx dt{font-weight:600}.gx dd{margin:0;color:var(--mute)}.gx>.h{padding-top:0;font-size:.85rem;color:var(--acc2);font-weight:600}
 @media(max-width:680px){.gx>div{grid-template-columns:1fr}}
@@ -76,8 +75,8 @@ details{border-bottom:1px solid var(--line);padding:14px 0}summary{cursor:pointe
 <main>
 <section class="hero">
 <p class="crumb"><a href="/">Home</a> › iDempiere Payment Link Plugin</p>
-<h1>Send invoices with a payment link, straight from iDempiere</h1>
-<p class="lead">Customers often pay outside the ERP, and someone then matches the payment and keys it in. This project starts to close that loop. Staff run one process in iDempiere to email each customer a secure Razorpay payment link with the invoice PDF. When the customer pays, a Spring Boot service verifies the signed webhook and stores the payment. Posting it against the invoice in iDempiere is the next phase.</p>
+<h1>Send invoices with a payment link, and get paid in iDempiere</h1>
+<p class="lead">Customers often pay outside the ERP, and someone then matches the payment and keys it in. This project closes that loop. Staff run one process in iDempiere to email each customer a secure Razorpay payment link with the invoice PDF. When the customer pays, a Spring Boot service verifies the signed webhook, and iDempiere pulls the result on a schedule, then creates and completes the payment against the invoice.</p>
 <a class="btn" href="#contact">Request a quote or demo</a><a class="btn o" href="#features">See what it does</a>
 </section>
 
@@ -87,10 +86,10 @@ details{border-bottom:1px solid var(--line);padding:14px 0}summary{cursor:pointe
 <li><small>In iDempiere</small><b>Pick and send</b><p>Run the process with a filter. Paid, credit-memo, nothing-open and no-email invoices are skipped and reported. The invoice PDF and link go out by standard iDempiere mail.</p></li>
 <li><small>Spring Boot service</small><b>Create the link</b><p>Creates a Razorpay link for the open amount, or reuses the active one.</p></li>
 <li><small>Razorpay</small><b>Customer pays</b><p>The customer pays on the hosted payment link page.</p></li>
-<li><small>Razorpay to service</small><b>Verify the webhook</b><p>The signed webhook is verified and the paid link is stored.</p></li>
-<li><small>In iDempiere · next phase</small><b>Post the payment</b><p>Create and complete the payment against the invoice. Not released yet.</p></li>
+<li><small>Razorpay to service</small><b>Verify the webhook</b><p>The signed webhook is verified and the link is marked paid, or flagged if the amount differs.</p></li>
+<li><small>In iDempiere</small><b>Post the payment</b><p>A scheduled sync pulls the paid link, completes the customer receipt against the invoice and confirms back.</p></li>
 </ol>
-<p class="cap">The ERP plugin only talks to the service, and the service is the only part that talks to the gateway. The dashed step is not built yet.</p>
+<p class="cap">The ERP plugin only talks to the service, and the service is the only part that talks to the gateway. iDempiere pulls results from the service, so the service never needs access to your ERP.</p>
 </div></section>
 
 <section id="features" class="pg"><h2>What you get</h2>
@@ -98,56 +97,65 @@ details{border-bottom:1px solid var(--line);padding:14px 0}summary{cursor:pointe
 <button role="tab" id="t0" aria-selected="true" aria-controls="p0">Sending</button><button role="tab" id="t1" aria-selected="false" tabindex="-1" aria-controls="p1">Links and history</button><button role="tab" id="t2" aria-selected="false" tabindex="-1" aria-controls="p2">Payments</button></div>
 <dl class="rows pn" id="p0" role="tabpanel" aria-labelledby="t0">
 <div><dt>Bulk send with safety filters</dt><dd>Filter by invoice, invoice date range, business partner, document type, organization or due date. At least one filter is required, so the process can't email every open invoice by accident.</dd></div>
-<div><dt>Smart eligibility</dt><dd>Skips paid invoices, credit memos, invoices with nothing open and invoices with no contact email, and reports sent, skipped and failed counts per invoice.</dd></div>
-<div><dt>Standard iDempiere email</dt><dd>The invoice PDF is attached and the link is available in mail templates as <code>@PaymentLinkURL@</code>.</dd></div></dl>
+<div><dt>Smart eligibility</dt><dd>Skips paid invoices, credit memos, invoices with nothing open, invoices with no contact email and currencies without two decimals, and reports sent, skipped and failed counts.</dd></div>
+<div><dt>Resend or regenerate</dt><dd>Resend emails the same link again. Regenerate cancels the old link at the gateway and issues a new one. Every link stays in the history, so nothing is overwritten.</dd></div>
+<div><dt>Standard iDempiere email</dt><dd>The invoice PDF is attached and the link is available in mail templates as <code>@PaymentLinkURL@</code>. The link is cleared from the invoice once it finishes, so old links never appear in later mails.</dd></div></dl>
 <dl class="rows pn" id="p1" role="tabpanel" aria-labelledby="t1" hidden>
 <div><dt>Link reuse and regeneration</dt><dd>The same invoice and amount reuses the active link. If the open amount changes, the old link is cancelled at the gateway and a new one is issued, so only one live link exists per invoice.</dd></div>
-<div><dt>Payment history on the invoice</dt><dd>A read-only Payment Links tab shows status, expiry, gateway references and errors, and the current link shows on the invoice header.</dd></div>
-<div><dt>Per-organization setup</dt><dd>A configuration window stores the service URL, API key, gateway, bank account, mail template and expiry days. An organization row overrides the client-wide one, with role-based access.</dd></div></dl>
+<div><dt>Payment history on the invoice</dt><dd>A read-only Payment Links tab shows status, expiry, gateway references, payment details and errors, and the current link shows on the invoice header.</dd></div>
+<div><dt>Per-organization setup</dt><dd>A configuration window stores the service URL, API key (shown masked), gateway, bank account, mail template and expiry days. An organization row overrides the client-wide one, with role-based access.</dd></div></dl>
 <dl class="rows pn" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
-<div><dt>Automatic payment posting<span class="badge">Next phase</span></dt><dd>Paid links become completed iDempiere payments against the invoice, with amount and currency checks. Not released yet.</dd></div></dl>
+<div><dt>Automatic payment posting</dt><dd>Paid links become completed customer receipts against the invoice, using the configured bank account, with amount and currency checks and guards against double posting.</dd></div>
+<div><dt>Scheduled sync</dt><dd>A Sync Payment Links process runs on an iDempiere scheduler (every 5 minutes by default) or on demand. It pulls changed links, updates them and confirms each one back to the service.</dd></div>
+<div><dt>Mismatch and late payments</dt><dd>A payment with a different amount is flagged for review instead of posted. A payment on an expired or cancelled link is accepted but flagged "review needed".</dd></div></dl>
 </section>
 
 <section id="engineering" class="pg"><h2>Built to be safe with money</h2>
 <dl class="gx">
 <div class="h"><span>What is guaranteed</span><span>How it is enforced</span></div>
-<div><dt>Only your systems can call the service</dt><dd>API-key authentication on the service, the key stored encrypted in the ERP, and no secrets in code (environment variables).</dd></div>
+<div><dt>Only your systems can call the service</dt><dd>API-key authentication on the service, the key stored encrypted in the ERP, HTTPS required for the service URL (except localhost), and no secrets in code (environment variables).</dd></div>
 <div><dt>Forged webhooks are rejected</dt><dd>HMAC-SHA256 signature verification with constant-time comparison.</dd></div>
-<div><dt>Retries never apply twice</dt><dd>Events are deduplicated atomically with <code>INSERT … ON CONFLICT DO NOTHING</code> inside the same transaction as the state change, so gateway retries are safe and never skipped.</dd></div>
+<div><dt>Retries never apply twice</dt><dd>Events are deduplicated atomically with <code>INSERT … ON CONFLICT DO NOTHING</code> inside the same transaction as the state change, so gateway retries are safe and never skipped. If processing fails, the record rolls back so the retry is handled.</dd></div>
 <div><dt>One live link per invoice</dt><dd>A partial unique index enforces it, and stale half-created links are failed automatically.</dd></div>
-<div><dt>Wrong amounts are caught</dt><dd>A payment is flagged as a mismatch when the amount or currency differs.</dd></div>
-<div><dt>One failure never sinks a batch</dt><dd>Each invoice runs in its own transaction. If the mail fails after the link is saved, the link is kept and can be resent.</dd></div>
+<div><dt>Wrong amounts are caught</dt><dd>A payment is flagged as a mismatch when the amount or currency differs, and is never posted automatically.</dd></div>
+<div><dt>No money left unmatched</dt><dd>If money was received but not yet posted, the service refuses to create another link for that invoice. A mismatch also blocks new links until iDempiere has recorded it.</dd></div>
+<div><dt>The service never calls into your ERP</dt><dd>iDempiere pulls unsynced links and confirms each one, so the service needs no ERP credentials. Confirmation is idempotent.</dd></div>
+<div><dt>One failure never sinks a batch</dt><dd>Each invoice is sent in its own transaction, and each paid link is synced in its own transaction. If the mail fails after the link is saved, the link is kept and can be resent.</dd></div>
 <div><dt>Another gateway needs no ERP change</dt><dd>Gateway and webhook-adapter interfaces plus a registry. A new gateway needs one implementation of each interface plus configuration.</dd></div>
-<div><dt>Installs like any ERP bundle</dt><dd>Tables, columns, windows, menu, roles and the process come from re-runnable SQL scripts. The plugin is an OSGi bundle with annotation-based process registration and no generated model classes.</dd></div>
+<div><dt>Installs like any ERP bundle</dt><dd>Tables, columns, windows, menu, roles, processes and the scheduler come from re-runnable SQL scripts. The plugin is an OSGi bundle with annotation-based process registration and no generated model classes.</dd></div>
+<div><dt>Tested</dt><dd>Unit tests cover link creation rules, webhook handling and signature failures. Scripted end-to-end checks cover create, reuse, changed amounts, auth failures and the full amount-mismatch and Regenerate scenario.</dd></div>
 </dl></section>
 
 <section id="requirements" class="pg"><h2>What it's built with, what you need</h2>
 <div class="cols">
 <div><h3>Tech stack</h3><dl class="rows">
-<div><dt>Service</dt><dd>Java 17, Spring Boot 4.1, Spring Web MVC, Spring Data JPA (Hibernate), Bean Validation, Flyway, PostgreSQL, Actuator, Maven</dd></div>
+<div><dt>Service</dt><dd>Java 17, Spring Boot 4.1, Spring Web MVC, Spring Data JPA (Hibernate), Bean Validation, Flyway, PostgreSQL, Actuator, Razorpay Java SDK, Maven</dd></div>
 <div><dt>ERP plugin</dt><dd>iDempiere 13, OSGi (Declarative Services), Java <code>HttpClient</code>, Jackson, PL/pgSQL dictionary scripts</dd></div>
 <div><dt>Integrations</dt><dd>Razorpay Payment Links API and webhooks, REST/JSON</dd></div></dl></div>
 <div><h3>You need</h3><ul>
 <li>iDempiere 13 on Java 17 with PostgreSQL</li>
 <li>A Razorpay account (test mode works for evaluation)</li>
-<li>A place to run the Spring Boot service with PostgreSQL</li>
+<li>A place to run the Spring Boot service with its own PostgreSQL database, which can be the same machine as iDempiere</li>
 <li>A public HTTPS URL for the gateway to send webhooks to</li>
-<li>A contact email on each customer's business partner record</li></ul></div>
+<li>A contact email on each customer's business partner record</li>
+<li>A bank account and a mail template with the link placeholder, set in the configuration window</li></ul></div>
 </div>
 <div class="track">
-<div><b>Working in test mode</b>Link creation, reuse, amount changes, auth failures, validation errors and a real payment through a webhook tunnel</div>
-<div class="nx"><b>Next phase</b>Automatic creation and completion of the iDempiere payment against the invoice</div>
-<div class="nx"><b>Design supports it</b>Gateways other than Razorpay</div></div>
-<p class="note">Not yet run with live payments. Confirm production requirements before relying on it.</p>
+<div><b>Working in test mode</b>Link creation, reuse, amount changes, mismatches, auth failures, validation errors and a real payment through a webhook tunnel</div>
+<div class="nx"><b>Next up</b>An iDempiere-side test checklist (mismatch, expired-then-paid, regenerate) and a stable public HTTPS host for the service</div>
+<div class="nx"><b>Design supports it</b>Gateways other than Razorpay, and iDempiere's Payment Processor record</div></div>
+<p class="note">Not yet run with live payments. Only currencies with two decimals are supported. Confirm production requirements before relying on it.</p>
 </section>
 
 <section id="faq" class="pg"><h2>Common questions</h2>
 <details><summary>Does it work with iDempiere 13?</summary><p>Yes. The ERP side is an OSGi plugin for iDempiere 13 on Java 17 and PostgreSQL. A separate Spring Boot service talks to the payment gateway.</p></details>
 <details><summary>Which payment gateway does it use?</summary><p>Razorpay Payment Links. The service is gateway-neutral, so another provider can be added with one gateway implementation and one webhook adapter, without changing the ERP plugin.</p></details>
 <details><summary>Can it email every open invoice at once?</summary><p>No, by design. The process needs at least one filter (invoice, date range, business partner, document type, organization or due date), so a bulk send can never go to every open invoice by accident.</p></details>
+<details><summary>What is the difference between Resend and Regenerate?</summary><p>Resend emails the existing link again. Regenerate cancels the old link at the gateway and issues a new one. The old row stays in the history as Cancelled.</p></details>
 <details><summary>What happens if the invoice amount changes after a link was sent?</summary><p>The old link is cancelled at the gateway and a new one is issued for the new open amount, so only one live link exists per invoice.</p></details>
 <details><summary>Are gateway retries and duplicate webhooks safe?</summary><p>Yes. Webhook signatures are verified with HMAC-SHA256, and each event is deduplicated atomically in the same transaction as the state change, so retries are never skipped or applied twice.</p></details>
-<details><summary>Does it record the payment in iDempiere automatically?</summary><p>Payment capture and verification are working. Creating and completing the matching iDempiere payment against the invoice is the next phase and is not released yet.</p></details>
+<details><summary>Does it record the payment in iDempiere automatically?</summary><p>Yes. iDempiere pulls paid links from the service on a schedule (every 5 minutes by default) or on demand, creates and completes a customer receipt against the invoice, and confirms back to the service. Amount and currency are checked first.</p></details>
+<details><summary>What if the customer pays a different amount?</summary><p>The link is flagged as an amount mismatch for review, no payment is posted automatically, and no new link is issued until iDempiere has recorded it. After review, only Regenerate issues a new link.</p></details>
 <details><summary>Has it been used with live payments?</summary><p>Not yet. It has been developed and tested in Razorpay test mode, including a real payment arriving through a webhook tunnel. Confirm production requirements before going live.</p></details>
 </section>
 
