@@ -50,8 +50,10 @@
 .sk:hover{border-color:var(--acc);box-shadow:0 14px 34px var(--glow)}
 .sk h3{font-size:1.2rem;margin-bottom:6px}.sk>p{margin:0;color:var(--mute);font-size:.92rem}
 .sk .pills{margin-top:14px}.sk .pills span.p{border-color:var(--acc);color:var(--acc);font-weight:600}
-.sk .seen{margin-top:6px;font-size:.85rem;color:var(--mute)}.sk .seen a{color:var(--acc2);font-weight:600;text-decoration:none;margin-right:10px}.sk .seen a:hover{text-decoration:underline}
-.edu{display:grid;gap:12px}
+.sk .seen{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:.85rem;color:var(--mute)}
+.sk .seen a{color:var(--acc-text);font-weight:600;text-decoration:none;padding:4px 12px;border:1px solid var(--line);border-radius:99px;transition:.2s}
+.sk .seen a:hover{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 10%,transparent)}.edu{display:grid;gap:12px}
+.card.hl{border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 35%,transparent),0 14px 34px var(--glow)}
 .e{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px}
 .e b{font-family:'Space Grotesk',sans-serif}.e span{color:var(--mute);font-size:.9rem}
 .score{color:var(--acc);font-weight:700}
@@ -109,9 +111,7 @@
 <div class="bars">
 <div class="sk"><h3>Backend</h3><p>Business logic, services and defect fixes behind ERP workflows.</p><div class="pills"><span class="p">Java</span><span>OOP</span><span>Collections</span><span>Exception Handling</span><span>JDBC</span><span>Spring Boot</span></div></div>
 <div class="sk"><h3>ERP</h3><p>Supporting four modules on a production ERP at Tenth Planet Technologies.</p><div class="pills"><span class="p">iDempiere</span><span class="p">Compiere</span><span>OSGi plugins</span><span>Purchase</span><span>Sales</span><span>Inventory</span><span>Accounting</span></div></div>
-<div class="sk"><h3>Data</h3><p>Transactional processing, reporting and query tuning.</p><div class="pills"><span class="p">Oracle SQL</span><span class="p">PostgreSQL</span><span>Flyway</span><span>Query optimization</span></div></div>
-<div class="sk"><h3>Integrations</h3><p>Connecting the ERP to government and payment systems.</p><div class="pills"><span class="p">REST / JSON</span><span>Webhooks</span><span>GST e-invoicing (IRP)</span><span>Razorpay Payment Links</span><span>Whitebooks API</span></div><div class="seen">Built in: <a href="/einvoice">E-Invoice plugin →</a><a href="/paymentlink">Payment Link plugin →</a></div></div>
-<div class="sk"><h3>Testing</h3><p>Hands-on testing of ERP changes, end to end.</p><div class="pills"><span class="p">Manual</span><span>Black Box</span><span>Regression</span><span>UAT</span><span>Parallel live testing</span><span>Performance</span></div><div class="seen"><a href="#qa">See the numbers →</a></div></div>
+<div class="sk"><h3>Integrations</h3><p>Connecting the ERP to government and payment systems.</p><div class="pills"><span class="p">REST / JSON</span><span>Webhooks</span><span>GST e-invoicing (IRP)</span><span>Razorpay Payment Links</span><span>Whitebooks API</span></div><div class="seen"><span>Used in</span><a href="#p-einvoice">E-Invoice plugin ↓</a><a href="#p-payment">Payment Link plugin ↓</a></div></div>
 <div class="sk"><h3>Tools</h3><div class="pills"><span>Git</span><span>Eclipse</span><span>Maven</span></div></div>
 </div>
 </section>
@@ -133,9 +133,8 @@
 <section id="work" class="rv">
 <div class="eyebrow">Projects</div><h2>Selected work</h2>
 <div class="grid">
-<div class="card"><small>Plugin · iDempiere 13</small><h3>India GST E-Invoice (IRP) Plugin</h3><p>Generate and cancel IRNs straight from iDempiere invoices, with schema validation and a full audit trail.</p><div class="pills"><span>Java 17</span><span>OSGi</span><span>Whitebooks API</span><span>PostgreSQL</span><span>Sandbox-tested</span></div><a class="btn" href="/einvoice" style="margin-top:12px">View project →</a></div>
-<div class="card"><small>Integration · iDempiere 13</small><h3>Razorpay Payment Link Plugin</h3><p>Email customers a payment link with their invoice and track payments through signed, idempotent webhooks.</p><div class="pills"><span>Spring Boot</span><span>OSGi</span><span>PostgreSQL</span><span>Razorpay</span><span>Test mode</span></div><a class="btn" href="/paymentlink" style="margin-top:12px">View project →</a></div>
-<div class="card"><small>Key Project · Tenth Planet Technologies</small><h3>NGERP CENTRA</h3><p>Enterprise ERP on iDempiere: business logic, Oracle SQL tuning and production fixes across four modules.</p><div class="pills"><span>Java</span><span>iDempiere</span><span>Oracle SQL</span><span>UAT</span></div></div>
+<div class="card" id="p-einvoice"><small>Plugin · iDempiere 13</small><h3>India GST E-Invoice (IRP) Plugin</h3><p>Generate and cancel IRNs straight from iDempiere invoices, with schema validation and a full audit trail.</p><div class="pills"><span>Java 17</span><span>OSGi</span><span>Whitebooks API</span><span>PostgreSQL</span><span>Sandbox-tested</span></div><a class="btn" href="/einvoice" style="margin-top:12px">View project →</a></div>
+<div class="card" id="p-payment"><small>Integration · iDempiere 13</small><h3>Razorpay Payment Link Plugin</h3><p>Email customers a payment link with their invoice and track payments through signed, idempotent webhooks.</p><div class="pills"><span>Spring Boot</span><span>OSGi</span><span>PostgreSQL</span><span>Razorpay</span><span>Test mode</span></div><a class="btn" href="/paymentlink" style="margin-top:12px">View project →</a></div><div class="card"><small>Key Project · Tenth Planet Technologies</small><h3>NGERP CENTRA</h3><p>Enterprise ERP on iDempiere: business logic, Oracle SQL tuning and production fixes across four modules.</p><div class="pills"><span>Java</span><span>iDempiere</span><span>Oracle SQL</span><span>UAT</span></div></div>
 <div class="card"><small>Academic Project</small><h3>Surface Defect Detection using CNN</h3><p>CNN that classifies scratches, dents and discolorations at 86% accuracy on 10,000+ images.</p><div class="pills"><span>CNN</span><span>Deep Learning</span></div></div>
 </div>
 </section>
@@ -169,6 +168,8 @@ var words=['Java Developer','iDempiere / Compiere Developer','Oracle SQL & JDBC'
 document.querySelectorAll('.tab').forEach(function(b){b.onclick=function(){
  document.querySelectorAll('.tab').forEach(function(x){x.classList.toggle('on',x===b)});
  document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('on',p.dataset.p===b.dataset.t)})}});
+ // highlight a project card when its link in Skills is clicked
+document.querySelectorAll('.sk .seen a[href^="#p-"]').forEach(function(a){a.addEventListener('click',function(){var c=document.querySelector(a.getAttribute('href'));if(!c)return;c.classList.remove('hl');void c.offsetWidth;c.classList.add('hl');setTimeout(function(){c.classList.remove('hl')},2600)})});
 </script>
 </body>
 </html>
