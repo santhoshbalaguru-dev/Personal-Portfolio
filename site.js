@@ -3,6 +3,7 @@
    - Theme: light by default, toggled with #theme, remembered across pages and tabs
    - Mobile nav menu, active-section link highlight
    - Scroll progress bar, scroll reveal (.rv), stat counters ([data-n]) and cursor glow
+   Animations are skipped when the visitor prefers reduced motion.
    The #bar and #glow elements are created here, so pages need no extra markup. */
 (function(){
  var root=document.documentElement,KEY='sb-theme';
@@ -12,13 +13,14 @@
  addEventListener('storage',function(e){if(e.key===KEY)apply(saved())});
 
  document.addEventListener('DOMContentLoaded',function(){
+  var still=matchMedia('(prefers-reduced-motion:reduce)').matches;
   // theme toggle
   var btn=document.getElementById('theme');
   if(btn)btn.onclick=function(){
    var next=root.dataset.theme==='dark'?'light':'dark';
    apply(next);try{localStorage.setItem(KEY,next)}catch(e){}
   };
-  // mobile menu (hamburger under 900px)
+  // mobile menu (hamburger under 980px)
   var nv=document.querySelector('nav'),mb=document.getElementById('menu-btn');
   if(nv&&mb){
    var setOpen=function(o){nv.classList.toggle('open',o);mb.setAttribute('aria-expanded',o?'true':'false');mb.setAttribute('aria-label',o?'Close menu':'Open menu')};
@@ -48,6 +50,7 @@
   document.querySelectorAll('.rv').forEach(function(e){io.observe(e)});
   // stat counters
   function count(e){var n=+e.dataset.n,s=e.dataset.s||'',st=performance.now();
+   if(still){e.textContent=n.toLocaleString()+s;return}
    (function f(now){var p=Math.min((now-st)/1400,1);
     e.textContent=Math.round(n*(1-Math.pow(1-p,3))).toLocaleString()+(p===1?s:'');
     if(p<1)requestAnimationFrame(f)})(st)}
