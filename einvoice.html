@@ -63,10 +63,18 @@ details{border-bottom:1px solid var(--line);padding:14px 0}summary{cursor:pointe
 @media(max-width:760px){.led{grid-template-columns:1fr}.led>h2{position:static}}
 .pr p{font:1.08rem/1.7 var(--serif);max-width:64ch;margin:0 0 16px}.pr b{font-family:Inter,sans-serif;font-size:.95rem}
 .pull{margin-top:26px;border-left:4px solid var(--acc);padding-left:22px}.pull h3{font-size:1.4rem;font-weight:500;margin-bottom:10px}
-.chain{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 0;font:.82rem ui-monospace,Consolas,monospace}
-.chain li{border:1px solid var(--line);background:var(--card);padding:6px 11px;border-radius:4px}
-.chain li+li:before{content:"›";color:var(--acc);margin:0 9px 0 4px;position:relative;left:-14px;margin-right:-4px}
-.chain li+li{margin-left:14px}
+.rec{margin-top:20px}
+.rec-steps{list-style:none;margin:0;padding:0;counter-reset:r}
+.rec-steps li{position:relative;padding:0 0 18px 44px;counter-increment:r;font:.95rem/1.5 Inter,sans-serif;color:var(--mute)}
+.rec-steps li:before{content:counter(r);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--acc);color:var(--on-acc);display:grid;place-items:center;font:700 .8rem Inter,sans-serif}
+.rec-steps li:after{content:"";position:absolute;left:13px;top:32px;bottom:2px;border-left:1px solid var(--line)}
+.rec-steps b{display:block;color:var(--ink)}
+.rec-out{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:12px;margin-left:44px}
+.rec-out>div{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:14px 16px;font:.9rem/1.5 Inter,sans-serif;color:var(--mute)}
+.rec-out small{display:block;font-weight:600;color:var(--acc2)}
+.rec-out b{display:block;color:var(--ink);margin:2px 0 4px}
+.rec-out .ok{border-color:var(--acc)}
+.rec-out .no{border-style:dashed}
 .steps{list-style:none;margin:0;padding:0;counter-reset:s}
 .steps li{position:relative;padding:0 0 22px 48px;counter-increment:s}
 .steps li:before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--acc);color:var(--on-acc);display:grid;place-items:center;font:700 .85rem Inter}
@@ -111,7 +119,16 @@ details{border-bottom:1px solid var(--line);padding:14px 0}summary{cursor:pointe
 <div class="pull"><h3>The hard part: an IRN that already exists</h3>
 <p>The IRP will not register the same invoice twice, so it answers with an error saying the IRN already exists. That can happen when a call succeeded at the IRP but the response never made it back, leaving iDempiere with no IRN for an invoice that already has one. Retrying can never fix this.</p>
 <p>The plugin treats that error as a recovery path. It fetches the existing IRN from the IRP and checks that document type, number, date, both GSTINs and the total all match the invoice before attaching it. If anything differs, it refuses and reports the mismatch, so a wrong IRN is never silently stored on an invoice.</p>
-<ol class="chain" aria-label="Recovery sequence"><li>IRN already exists</li><li>Fetch it from the IRP</li><li>Match six fields</li><li>Attach, or refuse</li></ol><div class="pills" style="margin-top:18px"><b style="font:600 .9rem Inter,sans-serif;margin-right:8px">Compared before attaching:</b><span>Document type</span><span>Number</span><span>Date</span><span>Supplier GSTIN</span><span>Buyer GSTIN</span><span>Total</span></div></div>
+<div class="rec" role="group" aria-label="Recovery sequence">
+<ol class="rec-steps">
+<li><b>The IRP says the IRN already exists</b><span>The invoice is registered, but the response never reached iDempiere.</span></li>
+<li><b>Fetch the existing IRN</b><span>The plugin asks the IRP for the record it holds.</span></li>
+<li><b>Match six fields</b><span>Document type, number, date, both GSTINs and total are checked against the invoice.</span></li>
+</ol>
+<div class="rec-out">
+<div class="ok"><small>All six match</small><b>Attach the IRN</b><span>The existing IRN is stored on the invoice.</span></div>
+<div class="no"><small>Anything differs</small><b>Refuse and report</b><span>Nothing is stored, and the mismatch is reported.</span></div>
+</div></div>
 </div></section>
 
 <section id="how" class="led"><h2>From completed invoice to IRN</h2>

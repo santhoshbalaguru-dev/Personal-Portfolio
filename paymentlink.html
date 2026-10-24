@@ -66,6 +66,12 @@ details{border-bottom:1px solid var(--line);padding:14px 0}summary{cursor:pointe
 .track>div{position:relative;padding:20px 18px 0 0;color:var(--mute);font-size:.92rem}.track b{display:block;color:var(--ink)}
 .track>div:before{content:"";box-sizing:border-box;position:absolute;top:-10px;left:0;width:17px;height:17px;border-radius:50%;background:var(--acc)}
 .track>.nx:before{background:var(--bg);border:2px dashed var(--acc)}
+@media(max-width:800px){
+.track{grid-template-columns:1fr;border-top:0;border-left:3px solid var(--line);margin:34px 0 0 10px}
+.track>div{padding:0 0 24px 26px}
+.track>div:last-child{padding-bottom:0}
+.track>div:before{top:4px;left:-10px}
+}
 .note{max-width:70ch;color:var(--mute);margin:26px 0 0}
 .go2 .btn{margin:0 5px 10px}.go2{text-align:center}.go2 p{color:var(--pm);max-width:520px;margin:0 auto 26px}
 </style>
