@@ -1,8 +1,15 @@
 /* Shared styles for every page of santhoshbalaguru.website.
    Theme tokens, layout, components, glow and animations live here.
    Page-specific styles stay in each page's own <style> block. */
-:root{--bg:#f6f5f1;--card:#fff;--ink:#14161a;--mute:#5d6470;--line:#e2e0d8;--acc:#cc4d0b;--acc2:#0b7285;--glow:rgba(204,77,11,.12);--on-acc:#fff;--acc-text:#b8460a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-:root[data-theme="dark"]{--bg:#0e1013;--card:#171a1f;--ink:#eef0f3;--mute:#9aa3af;--line:#262b33;--acc:#ff8a4c;--acc2:#3bc9db;--glow:rgba(255,138,76,.14);--on-acc:#14161a;--acc-text:#ff8a4c}
+:root{--bg:#f6f5f1;--card:#fff;--ink:#14161a;--mute:#5d6470;--line:#e2e0d8;--acc:#cc4d0b;--acc2:#0b7285;--glow:rgba(204,77,11,.12);--on-acc:#fff;--acc-text:#b8460a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+:root[data-theme="dark"]{--bg:#0e1013;--card:#171a1f;--ink:#eef0f3;--mute:#9aa3af;--line:#262b33;--acc:#ff8a4c;--acc2:#3bc9db;--glow:rgba(255,138,76,.14);--on-acc:#14161a;--acc-text:#ff8a4c;color-scheme:dark}
+@media (prefers-color-scheme: dark){
+:root:not([data-theme="light"]){--bg:#0e1013;--card:#171a1f;--ink:#eef0f3;--mute:#9aa3af;--line:#262b33;--acc:#ff8a4c;--acc2:#3bc9db;--glow:rgba(255,138,76,.14);--on-acc:#14161a;--acc-text:#ff8a4c;color-scheme:dark}
+:root:not([data-theme="light"]) nav{box-shadow:0 8px 30px rgba(0,0,0,.45)}
+:root:not([data-theme="light"]) .links{box-shadow:0 18px 40px rgba(0,0,0,.55)}
+:root:not([data-theme="light"]) .soc .gh-l{display:none}
+:root:not([data-theme="light"]) .soc .gh-d{display:block}
+}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:96px;overflow-x:hidden}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Inter,system-ui,sans-serif}
 h1,h2,h3{font-family:'Space Grotesk',Inter,sans-serif;line-height:1.15;margin:0}

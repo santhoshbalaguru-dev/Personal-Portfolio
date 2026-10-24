@@ -15,9 +15,11 @@
  document.addEventListener('DOMContentLoaded',function(){
   var still=matchMedia('(prefers-reduced-motion:reduce)').matches;
   // theme toggle
+  // light by default
   var btn=document.getElementById('theme');
   if(btn)btn.onclick=function(){
-   var next=root.dataset.theme==='dark'?'light':'dark';
+   var cur=root.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+   var next=cur==='dark'?'light':'dark';
    apply(next);try{localStorage.setItem(KEY,next)}catch(e){}
   };
   // mobile menu (hamburger under 980px)
