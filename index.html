@@ -7,7 +7,7 @@
 <meta name="description" content="Santhosh B, Java Developer in Chennai: 2 years building enterprise ERP apps on Compiere / iDempiere and Oracle SQL, plus regression and UAT testing.">
 <meta name="author" content="Santhosh B">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<meta name="theme-color" content="#e8590c">
+<meta name="theme-color" content="#cc4d0b">
 <link rel="canonical" href="https://santhoshbalaguru.website/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_IN">
@@ -37,15 +37,10 @@
 /* index-only styles (shared theme, layout and animations are in site.css) */
 .type{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.1rem,3vw,1.5rem);color:var(--acc2);min-height:1.8em}
 .type:after{content:"|";animation:p 1s infinite}
-.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
-.tab{padding:9px 18px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--mute);cursor:pointer;font:inherit;font-size:.9rem}
-.tab.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.panel{display:none;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px}.panel.on{display:block;animation:in .4s}
-@keyframes in{from{opacity:0;transform:translateY(8px)}}
+.tl{border-left:2px solid var(--line);margin-left:6px;padding-left:28px}.tl>div{position:relative;margin-bottom:34px}.tl>div:last-child{margin-bottom:0}.tl>div:before{content:"";position:absolute;left:-37px;top:6px;width:16px;height:16px;border-radius:50%;background:var(--acc);border:3px solid var(--bg)}.tl ul{margin:0;padding-left:18px;color:var(--mute)}.tl li{margin-bottom:8px}.tl li a{color:var(--acc-text)}
 .row{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px}
 .row h3{font-size:1.3rem}.when{color:var(--acc2);font-size:.88rem;font-weight:600}
 .co{color:var(--mute);margin-bottom:14px}
-.panel ul{margin:0;padding-left:18px;color:var(--mute)}.panel li{margin-bottom:8px}
 .bars{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px}
 .sk{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;transition:.3s}
 .sk:hover{border-color:var(--acc);box-shadow:0 14px 34px var(--glow)}
@@ -62,10 +57,11 @@
 .cb b{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.1rem;line-height:1.3;overflow-wrap:anywhere}
 .go{flex:none;margin-top:auto;font-size:.85rem;font-weight:600;color:var(--acc-text);opacity:.75;transition:.25s}
 .cert:hover .go{opacity:1;transform:translateX(3px)}
+.card.next .go{opacity:1}
 .contact{text-align:center}
 .contact .box{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:56px 24px}
 .contact p{color:var(--mute);max-width:480px;margin:0 auto 26px}
-@media(prefers-reduced-motion:reduce){.type:after{animation:none}.panel.on{animation:none}.sk,.cert,.go,.sk .seen a{transition:none}.cert:hover,.cert:focus-visible,.cert:hover .go{transform:none}}
+@media(prefers-reduced-motion:reduce){.type:after{animation:none}.sk,.cert,.go,.sk .seen a{transition:none}.cert:hover,.cert:focus-visible,.cert:hover .go{transform:none}}
 </style>
 </head>
 <body>
@@ -90,20 +86,20 @@
 
 <section id="exp" class="rv">
 <div class="eyebrow">Experience</div><h2>Where I've worked</h2>
-<div class="tabs"><button class="tab on" data-t="0">Software Developer</button><button class="tab" data-t="1">QA Tester</button></div>
-<div class="panel on" data-p="0">
-<div class="row"><h3>Software Developer</h3><span class="when">Jan 2025 – Present</span></div><div class="co">Tenth Planet Technologies Pvt. Ltd., Chennai</div>
+<div class="tl">
+<div><div class="row"><h3>Software Developer</h3><span class="when">Jan 2025 – Present</span></div><div class="co">Tenth Planet Technologies Pvt. Ltd., Chennai</div>
 <ul><li>Developed and maintained Java backend functionality within the Compiere / iDempiere ERP framework for Purchase, Sales, Inventory and Accounting.</li>
+<li>Built two iDempiere 13 integrations as OSGi plugins: India GST e-invoicing (IRP) and Razorpay payment links. <a href="#work">See projects</a>.</li>
 <li>Built and customized backend business logic from functional requirements across multiple ERP workflows.</li>
 <li>Debugged and resolved backend and functional defects, improving stability and reducing production issues.</li>
 <li>Wrote and optimized Oracle SQL for transactional processing, data retrieval and reporting.</li>
 <li>Refactored existing Java code for quality, maintainability and reliability.</li>
 <li>Ran unit and regression testing and supported UAT for stable releases; worked with QA and business users on requirements and fixes.</li></ul></div>
-<div class="panel" data-p="1">
-<div class="row"><h3>Quality Assurance Tester</h3><span class="when">Oct 2024 – Dec 2024</span></div><div class="co">Tenth Planet Technologies Pvt. Ltd., Chennai</div>
+<div><div class="row"><h3>Quality Assurance Tester</h3><span class="when">Oct 2024 – Dec 2024</span></div><div class="co">Tenth Planet Technologies Pvt. Ltd., Chennai</div>
 <ul><li>Executed manual test cases and regression testing across Sales, Inventory and Accounting modules.</li>
 <li>Identified, documented and tracked functional defects, verifying fixes with developers.</li>
 <li>Took part in UAT, gaining end-to-end understanding of enterprise ERP workflows and business needs.</li></ul></div>
+</div>
 </section>
 
 <section id="skills" class="rv">
@@ -139,6 +135,14 @@
 </div>
 </section>
 
+<section id="build" class="rv">
+<div class="eyebrow">Work with me</div><h2>What I can build for you</h2>
+<div class="grid">
+<a class="card next" href="/einvoice"><small>iDempiere · India</small><h3>GST e-invoicing</h3><p>IRNs, signed invoices and QR codes created from your completed invoices.</p><span class="go">See the plugin →</span></a>
+<a class="card next" href="/paymentlink"><small>iDempiere · Payments</small><h3>Payment links that post back</h3><p>Email a Razorpay link with the invoice and have the receipt posted for you.</p><span class="go">See the plugin →</span></a>
+<a class="card next" href="#contact"><small>Java · Oracle SQL · Testing</small><h3>ERP backend work</h3><p>Business logic, defect fixing, SQL tuning and regression testing on iDempiere.</p><span class="go">Get in touch →</span></a>
+</div></section>
+
 <section id="edu" class="rv">
 <div class="eyebrow">Certifications</div><h2>Credentials</h2>
 <div class="certs" style="margin-top:0">
@@ -166,10 +170,6 @@ else(function t(){var w=words[wi];el.textContent=w.slice(0,ci);
  if(!del&&ci===w.length){del=true;return setTimeout(t,1400)}
  if(del&&ci===0){del=false;wi=(wi+1)%words.length}
  ci+=del?-1:1;setTimeout(t,del?35:70)})();
-// tabs
-document.querySelectorAll('.tab').forEach(function(b){b.onclick=function(){
- document.querySelectorAll('.tab').forEach(function(x){x.classList.toggle('on',x===b)});
- document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('on',p.dataset.p===b.dataset.t)})}});
 // highlight a project card when its link in Skills is clicked
 document.querySelectorAll('.sk .seen a[href^="#p-"]').forEach(function(a){a.addEventListener('click',function(){var c=document.querySelector(a.getAttribute('href'));if(!c)return;c.classList.remove('hl');void c.offsetWidth;c.classList.add('hl');setTimeout(function(){c.classList.remove('hl')},2600)})});
 </script>

@@ -6,7 +6,7 @@
 <title>iDempiere E-Invoice Plugin for India GST (IRN) | Santhosh B</title>
 <meta name="description" content="iDempiere 13 plugin for India GST e-invoicing. Generate and cancel IRNs via Whitebooks with schema validation, duplicate recovery and a full audit trail.">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<meta name="theme-color" content="#e8590c">
+<meta name="theme-color" content="#cc4d0b">
 <meta name="author" content="Santhosh B">
 <link rel="canonical" href="https://santhoshbalaguru.website/einvoice">
 <meta property="og:type" content="website">
@@ -70,8 +70,9 @@ details{border-bottom:1px solid var(--line);padding:14px 0}summary{cursor:pointe
 .steps li:before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--acc);color:var(--on-acc);display:grid;place-items:center;font:700 .85rem Inter}
 .steps li:not(:last-child):after{content:"";position:absolute;left:14px;top:34px;bottom:4px;border-left:1px solid var(--line)}
 .steps b{display:block}.steps span{color:var(--mute);font-size:.95rem}
-.sign{border-top:1px solid var(--line);padding:72px 5vw}.sign h2{font:500 clamp(2rem,5vw,3.2rem)/1.1 var(--serif);margin-bottom:14px}
-.sign p{color:var(--mute);max-width:520px;margin:0 0 24px}
+.sign{padding:56px 5vw}.sign .box{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:56px 24px;text-align:center}
+.sign h2{font:500 clamp(2rem,5vw,3.2rem)/1.1 var(--serif);margin-bottom:14px}
+.sign p{color:var(--mute);max-width:520px;margin:0 auto 26px}.sign .btn{margin:0 5px 10px}
 </style>
 </head>
 <body>
@@ -95,6 +96,11 @@ details{border-bottom:1px solid var(--line);padding:14px 0}summary{cursor:pointe
 </aside>
 </section>
 
+<section class="led"><h2>Before and after</h2><div>
+<div class="ba"><div><b>Without the plugin</b><ol><li>Complete the invoice in iDempiere</li><li>Re-enter it in the e-invoice portal by hand, or rely on a one-off integration built per project</li></ol></div>
+<div class="af"><b>With the plugin</b><ol><li>Complete the invoice in iDempiere</li><li>Run one process for a single invoice or a date range</li><li>The IRN, signed invoice and QR code are stored on the document</li></ol></div></div>
+<div class="stats" style="margin-top:28px"><div class="stat"><b data-n="6">0</b><span>fields matched before an existing IRN is attached</span></div><div class="stat"><b data-n="24" data-s=" h">0</b><span>IRN cancellation window</span></div><div class="stat"><b data-n="3">0</b><span>document types: invoice, credit memo, debit note</span></div></div></div></section>
+
 <section id="case" class="led"><h2>The problem, the build, the result</h2>
 <div class="pr">
 <p><b>Problem.</b> Indian businesses must register every B2B invoice with the government e-invoice system (IRP) and get an IRN back. For a company on iDempiere, that meant keying invoices into a portal by hand, or building a one-off integration for each project.</p>
@@ -103,7 +109,7 @@ details{border-bottom:1px solid var(--line);padding:14px 0}summary{cursor:pointe
 <div class="pull"><h3>The hard part: an IRN that already exists</h3>
 <p>The IRP will not register the same invoice twice, so it answers with an error saying the IRN already exists. That can happen when a call succeeded at the IRP but the response never made it back, leaving iDempiere with no IRN for an invoice that already has one. Retrying can never fix this.</p>
 <p>The plugin treats that error as a recovery path. It fetches the existing IRN from the IRP and checks that document type, number, date, both GSTINs and the total all match the invoice before attaching it. If anything differs, it refuses and reports the mismatch, so a wrong IRN is never silently stored on an invoice.</p>
-<ol class="chain" aria-label="Recovery sequence"><li>IRN already exists</li><li>Fetch it from the IRP</li><li>Match six fields</li><li>Attach, or refuse</li></ol></div>
+<ol class="chain" aria-label="Recovery sequence"><li>IRN already exists</li><li>Fetch it from the IRP</li><li>Match six fields</li><li>Attach, or refuse</li></ol><div class="pills" style="margin-top:18px"><b style="font:600 .9rem Inter,sans-serif;margin-right:8px">Compared before attaching:</b><span>Document type</span><span>Number</span><span>Date</span><span>Supplier GSTIN</span><span>Buyer GSTIN</span><span>Total</span></div></div>
 </div></section>
 
 <section id="how" class="led"><h2>From completed invoice to IRN</h2>
@@ -126,7 +132,8 @@ details{border-bottom:1px solid var(--line);padding:14px 0}summary{cursor:pointe
 <div><dt>Tax and discount handling</dt><dd>CGST/SGST/IGST/cess split by supply type, foreign-currency invoices converted to INR, and discount lines deducted from matching taxed lines.</dd></div>
 <div><dt>E-way bill details</dt><dd>Part A transport details are sent with the IRN when the shipment carries them, and the returned e-way bill number is stored.</dd></div>
 <div><dt>Per-organization setup</dt><dd>IRP credentials are kept per client or per organization in an E-Invoice Configuration window, restricted to administrator roles.</dd></div>
-</dl></section>
+</dl>
+<details style="margin-top:22px"><summary>Example of a validation message (illustrative wording)</summary><p><code>Invoice INV-2026-0142, line 2: HSN code is missing on the product.</code> Errors name the invoice line so the fix is obvious. This is a made-up example of the format, not a captured log.</p></details></section>
 
 <section id="who" class="led"><h2>Made for iDempiere teams in India</h2>
 <div class="pr">
@@ -174,11 +181,12 @@ details{border-bottom:1px solid var(--line);padding:14px 0}summary{cursor:pointe
 <details><summary>Can it be customized for my setup?</summary><p>Mapping rules, extra fields and workflow changes can be discussed. Tell me what you need when you get in touch.</p></details>
 </div></section>
 
-<section id="contact" class="sign"><h2>Want it for your iDempiere?</h2>
+<section id="contact" class="sign"><div class="box"><h2>Want it for your iDempiere?</h2>
 <p>Tell me your iDempiere version, volume of invoices and API provider, and I'll reply with pricing and next steps.</p>
 <a class="btn" href="mailto:santhoshbalaguru88@gmail.com?subject=iDempiere%20E-Invoice%20Plugin%20enquiry">Email for pricing</a>
 <a class="btn o" href="https://linkedin.com/in/santhoshb88" target="_blank" rel="noopener">LinkedIn</a>
-<a class="btn o" href="tel:+918148974874">8148974874</a></section>
+<a class="btn o" href="tel:+918148974874">8148974874</a>
+<a class="btn o" href="/einvoice-datasheet.pdf" download>Datasheet (PDF) ↓</a></div></section>
 
 <section><a class="card next" href="/paymentlink"><small>Next project</small><h3>Razorpay Payment Link Plugin</h3><p>Email customers a payment link with their invoice and track payments through signed, idempotent webhooks.</p><span class="go">View project →</span></a></section>
 </main>

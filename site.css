@@ -75,3 +75,16 @@ html{scroll-behavior:auto}
 .tag i{animation:none}
 .card:hover,.btn:hover{transform:none}
 }
+/* figures (inline SVG diagrams) and before/after blocks */
+.fig{margin:26px 0 0;border:1px solid var(--line);border-radius:16px;background:var(--card);padding:18px;overflow-x:auto}
+.fig svg{display:block;min-width:660px;width:100%;height:auto}.fig figcaption{margin-top:12px;color:var(--mute);font-size:.88rem;max-width:72ch}
+.fig .t{fill:var(--ink);font:600 14px Inter,sans-serif}.fig .s{fill:var(--mute);font:12px Inter,sans-serif}.fig .l{fill:var(--acc-text);font:600 11.5px Inter,sans-serif}
+.fig .bx{fill:var(--bg);stroke:var(--line);stroke-width:1.2}.fig .hi{stroke:var(--acc);stroke-width:1.6}.fig .wn{stroke:var(--acc2);stroke-dasharray:4 3}
+.fig .ln{stroke:var(--acc);stroke-width:1.6;fill:none}.fig .ar{fill:var(--acc)}
+.ba{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px}
+.ba>div{border:1px solid var(--line);border-radius:16px;background:var(--card);padding:22px}.ba>.af{border-color:var(--acc)}
+.ba b{display:block;font:700 1.05rem 'Space Grotesk',sans-serif;margin-bottom:8px}.ba .af b{color:var(--acc-text)}
+.ba ol{margin:0;padding-left:20px;color:var(--mute)}.ba li{margin-bottom:6px}
+
+/* the next-project card follows the contact block, so it needs no top padding of its own */
+section:has(>a.next){padding-top:0}
