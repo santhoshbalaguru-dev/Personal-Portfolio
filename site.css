@@ -88,3 +88,14 @@ html{scroll-behavior:auto}
 
 /* the next-project card follows the contact block, so it needs no top padding of its own */
 section:has(>a.next){padding-top:0}
+/* brand icons in pills, buttons and the footer */
+.pills span{display:inline-flex;align-items:center;gap:6px;vertical-align:top}
+.pills span>img{width:16px;height:16px;object-fit:contain;flex:none}
+.btn>img,.btn>svg{width:18px;height:18px;vertical-align:-4px;margin-right:8px}
+.btn>img.chip{width:24px;height:24px;padding:3px;background:#fff;border-radius:7px;vertical-align:-7px}
+.btn>svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.soc{display:flex;gap:10px;justify-content:center;margin-top:16px}
+.soc a{display:grid;place-items:center;width:40px;height:40px;border:1px solid var(--line);border-radius:99px;background:var(--card);transition:.2s}
+.soc a:hover{transform:translateY(-2px);border-color:var(--acc)}.soc a:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.soc img{width:18px;height:18px;object-fit:contain}
+.soc .gh-d,:root[data-theme="dark"] .soc .gh-l{display:none}:root[data-theme="dark"] .soc .gh-d{display:block}
