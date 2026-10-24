@@ -1,7 +1,7 @@
 /* Shared styles for every page of santhoshbalaguru.website.
    Theme tokens, layout, components, glow and animations live here.
    Page-specific styles stay in each page's own <style> block. */
-:root{--bg:#f6f5f1;--card:#fff;--ink:#14161a;--mute:#5d6470;--line:#e2e0d8;--acc:#cc4d0b;--acc2:#0b7285;--glow:rgba(204,77,11,.12);--on-acc:#fff;--acc-text:#b8460a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+:root{--bg:#f6f5f1;--card:#fff;--ink:#14161a;--mute:#5d6470;--line:#e2e0d8;--acc:#cc4d0b;--acc2:#0b7285;--glow:rgba(204,77,11,.12);--on-acc:#fff;--acc-text:#b8460a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light;padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px);}
 :root[data-theme="dark"]{--bg:#0e1013;--card:#171a1f;--ink:#eef0f3;--mute:#9aa3af;--line:#262b33;--acc:#ff8a4c;--acc2:#3bc9db;--glow:rgba(255,138,76,.14);--on-acc:#14161a;--acc-text:#ff8a4c;color-scheme:dark}
 @media (prefers-color-scheme: dark){
 :root:not([data-theme="light"]){--bg:#0e1013;--card:#171a1f;--ink:#eef0f3;--mute:#9aa3af;--line:#262b33;--acc:#ff8a4c;--acc2:#3bc9db;--glow:rgba(255,138,76,.14);--on-acc:#14161a;--acc-text:#ff8a4c;color-scheme:dark}
@@ -10,7 +10,7 @@
 :root:not([data-theme="light"]) .soc .gh-l{display:none}
 :root:not([data-theme="light"]) .soc .gh-d{display:block}
 }
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:96px;overflow-x:hidden}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:96px;overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Inter,system-ui,sans-serif}
 h1,h2,h3{font-family:'Space Grotesk',Inter,sans-serif;line-height:1.15;margin:0}
 a{color:inherit}
@@ -23,7 +23,7 @@ nav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:10;dis
 .links a:hover{color:var(--ink);background:color-mix(in srgb,var(--ink) 7%,transparent)}
 .links a.on{color:var(--acc-text);background:color-mix(in srgb,var(--acc) 13%,transparent)}
 .tools{display:flex;gap:6px;align-items:center}
-#theme,#menu-btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;width:38px;height:38px;cursor:pointer;font-size:1rem;padding:0}
+#theme,#menu-btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;width:44px;height:44px;cursor:pointer;font-size:1rem;padding:0}
 #menu-btn{display:none;place-items:center}
 #menu-btn .x{display:none}nav.open #menu-btn .a{display:none}nav.open #menu-btn .x{display:inline}
 .links a:focus-visible,#theme:focus-visible,#menu-btn:focus-visible,.brand:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
@@ -37,6 +37,7 @@ nav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:10;dis
 nav.open .links{opacity:1;visibility:visible;transform:none}
 .links a{padding:13px 16px;border-radius:14px;font-size:1rem}
 .links a.nav-btn{margin:6px 0 0;text-align:center}
+.links{max-height:calc(100vh - 116px);max-height:calc(100dvh - 116px);overflow-y:auto}
 }
 /* layout + type */
 section{max-width:1040px;margin:0 auto;padding:84px 5vw}
@@ -106,3 +107,13 @@ section:has(>a.next){padding-top:0}
 .soc a:hover{transform:translateY(-2px);border-color:var(--acc)}.soc a:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 .soc img{width:18px;height:18px;object-fit:contain}
 .soc .gh-d,:root[data-theme="dark"] .soc .gh-l{display:none}:root[data-theme="dark"] .soc .gh-d{display:block}
+
+@media(max-width:420px){.btn{padding:12px 16px;font-size:.92rem}}
+
+@media(hover:none){
+.card:hover,.btn:hover,.soc a:hover{transform:none}
+.card:hover{border-color:var(--line);box-shadow:none}
+.soc a:hover{border-color:var(--line)}
+}
+
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}

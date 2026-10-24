@@ -1,6 +1,6 @@
 /* Shared behaviour for every page of santhoshbalaguru.website.
    Load in <head> (no defer) so the saved theme is applied before first paint.
-   - Theme: light by default, toggled with #theme, remembered across pages and tabs
+   - Theme: system theme by default, toggled with #theme, remembered across pages and tabs
    - Mobile nav menu, active-section link highlight
    - Scroll progress bar, scroll reveal (.rv), stat counters ([data-n]) and cursor glow
    Animations are skipped when the visitor prefers reduced motion.
@@ -15,7 +15,6 @@
  document.addEventListener('DOMContentLoaded',function(){
   var still=matchMedia('(prefers-reduced-motion:reduce)').matches;
   // theme toggle
-  // light by default
   var btn=document.getElementById('theme');
   if(btn)btn.onclick=function(){
    var cur=root.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
