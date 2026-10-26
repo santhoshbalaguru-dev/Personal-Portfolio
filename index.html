@@ -52,8 +52,17 @@
 .sk .seen a{color:var(--acc-text);font-weight:600;text-decoration:none;padding:4px 12px;border:1px solid var(--line);border-radius:99px;transition:.2s}
 .sk .seen a:hover{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 10%,transparent)}
 .card.hl{border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 35%,transparent),0 14px 34px var(--glow)}
-.certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:14px;margin-top:34px}
-.cert{display:flex;flex-direction:column;align-items:flex-start;gap:14px;border:1px solid var(--line);border-radius:16px;padding:18px 20px;background:var(--card);text-decoration:none;color:var(--ink);position:relative;transition:.25s}
+.edu-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:16px;align-items:start}
+@media(max-width:860px){.edu-grid{grid-template-columns:1fr}}
+.edu-card .pills{margin-top:6px}
+.certs{display:grid;gap:12px;margin:0}
+.cert{display:flex;align-items:center;gap:16px;border:1px solid var(--line);border-radius:16px;padding:16px 18px;background:var(--card);text-decoration:none;color:var(--ink);position:relative;transition:.25s}
+.cert .go{margin-top:0;white-space:nowrap}
+.lg{flex:none;display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:#fff;border:1px solid var(--line)}
+.lg img{width:28px;height:28px;object-fit:contain}
+.edu-card .lg{width:76px;height:76px;margin-bottom:14px}
+.edu-card .lg img{width:56px;height:56px}
+.cert .pills{margin-top:8px}
 .cert:hover,.cert:focus-visible{transform:translateY(-4px);border-color:var(--acc);box-shadow:0 14px 34px var(--glow);outline:none}
 .cb{flex:1;min-width:0;width:100%}.cb small{display:block;color:var(--acc2);font-weight:600;font-size:.76rem;line-height:1.4;margin-bottom:6px}
 .cb b{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.1rem;line-height:1.3;overflow-wrap:anywhere}
@@ -78,8 +87,7 @@
 .portrait{order:-1;justify-self:start;width:170px}
 .portrait:before{inset:10px -10px -10px 10px;border-radius:22px}
 .ph{aspect-ratio:1/1;border-radius:22px}
-.ph img{object-position:50% 58%}
-.ph img{object-position:50% 58%;transform:translate(-9%, 5%) scale(1.5)}
+.ph img{object-position:50% 58%;transform:translate(-9%, 17%) scale(1.6)}
 }
 </style>
 </head>
@@ -169,13 +177,14 @@
 
 <section id="edu" class="rv">
 <div class="eyebrow">Education &amp; Certifications</div><h2>Credentials</h2>
-<div class="certs" style="margin-top:0">
-<a class="cert" href="https://www.udemy.com/certificate/UC-5e685139-abd2-43ed-b27d-0bf77f85c052/" target="_blank" rel="noopener"><span class="cb"><small>Udemy · Certificate of Completion</small><b>Core Java and JDBC</b></span><span class="go">View ↗</span></a>
-<a class="cert" href="https://www.udemy.com/certificate/UC-26dd299c-749d-40ff-84b7-709927bcfcb7/" target="_blank" rel="noopener"><span class="cb"><small>Udemy · Certificate of Completion</small><b>PostgreSQL Database Management System</b></span><span class="go">View ↗</span></a>
-<a class="cert" href="https://www.credly.com/badges/c9484f52-9594-4102-beeb-a816257a2bc6/public_url" target="_blank" rel="noopener"><span class="cb"><small>Microsoft · Verified on Credly</small><b>Microsoft Certified: Azure Fundamentals (AZ-900)</b></span><span class="go">Verify ↗</span></a>
+<div class="edu-grid">
+<div class="certs">
+<a class="cert" href="https://www.udemy.com/certificate/UC-5e685139-abd2-43ed-b27d-0bf77f85c052/" target="_blank" rel="noopener"><span class="lg"><img src="/icons/udemy.svg" alt="" width="28" height="28"></span><span class="cb"><small>Udemy · Certificate of Completion</small><b>Core Java and JDBC</b><div class="pills"><span>Java</span><span>JDBC</span></div></span><span class="go">View ↗</span></a>
+<a class="cert" href="https://www.udemy.com/certificate/UC-26dd299c-749d-40ff-84b7-709927bcfcb7/" target="_blank" rel="noopener"><span class="lg"><img src="/icons/udemy.svg" alt="" width="28" height="28"></span><span class="cb"><small>Udemy · Certificate of Completion</small><b>PostgreSQL Database Management System</b><div class="pills"><span>PostgreSQL</span><span>SQL</span></div></span><span class="go">View ↗</span></a>
+<a class="cert" href="https://www.credly.com/badges/c9484f52-9594-4102-beeb-a816257a2bc6/public_url" target="_blank" rel="noopener"><span class="lg"><img src="/icons/microsoft.svg" alt="" width="28" height="28"></span><span class="cb"><small>Microsoft · Verified on Credly</small><b>Microsoft Certified: Azure Fundamentals (AZ-900)</b><div class="pills"><span>Cloud</span><span>Azure</span></div></span><span class="go">Verify ↗</span></a>
 </div>
-<h3 style="margin:44px 0 14px">Education</h3>
-<div class="grid"><div class="card"><small>2020 – 2024</small><h3>B.Tech in Information Technology</h3><p>Dhanalakshmi Srinivasan College · 78.4%</p></div></div>
+<div class="card edu-card"><span class="lg"><img src="/icons/anna-university.svg" alt="Anna University logo" width="54" height="54"></span><small>2020 – 2024</small><h3>B.Tech in Information Technology</h3><p>Dhanalakshmi Srinivasan College · Affiliated to Anna University</p><div class="pills"><span class="p">78.4%</span></div></div>
+</div>
 </section>
 
 <section id="contact" class="contact rv">
