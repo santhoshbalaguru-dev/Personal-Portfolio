@@ -7,7 +7,6 @@
    The #bar and #glow elements are created here, so pages need no extra markup. */
 (function(){
  var root=document.documentElement,KEY='sb-theme';
- var setOpen=function(o){nv.classList.toggle('open',o);root.classList.toggle('menu-open',o);mb.setAttribute('aria-expanded',o?'true':'false');mb.setAttribute('aria-label',o?'Close menu':'Open menu')};
  function saved(){try{var t=localStorage.getItem(KEY);return t==='dark'||t==='light'?t:null}catch(e){return null}}
  function apply(t){if(t)root.dataset.theme=t;else delete root.dataset.theme}
  apply(saved());
@@ -25,7 +24,7 @@
   // mobile menu (hamburger under 980px)
   var nv=document.querySelector('nav'),mb=document.getElementById('menu-btn');
   if(nv&&mb){
-   var setOpen=function(o){nv.classList.toggle('open',o);mb.setAttribute('aria-expanded',o?'true':'false');mb.setAttribute('aria-label',o?'Close menu':'Open menu')};
+var setOpen=function(o){nv.classList.toggle('open',o);root.classList.toggle('menu-open',o);mb.setAttribute('aria-expanded',o?'true':'false');mb.setAttribute('aria-label',o?'Close menu':'Open menu')};
    mb.onclick=function(e){e.stopPropagation();setOpen(!nv.classList.contains('open'))};
    nv.querySelectorAll('.links a').forEach(function(a){a.addEventListener('click',function(){setOpen(false)})});
    document.addEventListener('click',function(e){if(!nv.contains(e.target))setOpen(false)});
