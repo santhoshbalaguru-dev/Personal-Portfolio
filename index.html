@@ -40,6 +40,11 @@
 .type{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.1rem,3vw,1.5rem);color:var(--acc2);min-height:1.8em}
 .type:after{content:"|";animation:p 1s infinite}
 .tl{border-left:2px solid var(--line);margin-left:6px;padding-left:28px}.tl>div{position:relative;margin-bottom:34px}.tl>div:last-child{margin-bottom:0}.tl>div:before{content:"";box-sizing:border-box;position:absolute;left:-37px;top:4px;width:16px;height:16px;border-radius:50%;background:var(--acc);border:3px solid var(--bg)}.tl ul{margin:0;padding-left:18px;color:var(--mute)}.tl li{margin-bottom:8px}.tl li a{color:var(--acc-text)}
+.tl>div:not(.now):before{background:var(--mute)}
+.tl>.now:before{left:-39px;top:3px;width:20px;height:20px;animation:now 2.4s ease-out infinite}
+.tl>.now .when{color:var(--acc-text);background:color-mix(in srgb,var(--acc) 13%,transparent);padding:2px 12px;border-radius:99px}
+@keyframes now{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--acc) 45%,transparent)}100%{box-shadow:0 0 0 12px transparent}}
+@media(prefers-reduced-motion:reduce){.tl>.now:before{animation:none}}
 .row{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px}
 .row h3{font-size:1.3rem}.when{color:var(--acc2);font-size:.88rem;font-weight:600}
 .co{color:var(--mute);margin-bottom:14px}
@@ -84,10 +89,7 @@
 .ph img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 80%;transform:translate(-7%,12%) scale(2.0);transform-origin:50% 30%}
 /* To adjust profile picture in mobile view*/
 @media(max-width:860px){
-.portrait{order:-1;justify-self:start;width:170px}
-.portrait:before{inset:10px -10px -10px 10px;border-radius:22px}
-.ph{aspect-ratio:1/1;border-radius:22px}
-.ph img{object-position:50% 58%;transform:translate(-9%, 17%) scale(1.6)}
+.portrait{display:none}
 }
 </style>
 </head>
@@ -106,7 +108,7 @@
 <p class="lead">Java Developer with 2 years of experience building and maintaining enterprise ERP applications on Java, Oracle SQL and the Compiere / iDempiere framework — across Purchase, Sales, Inventory and Accounting. I debug, optimize and ship stable releases, backed by hands-on manual, regression and UAT testing experience.</p>
 <a class="btn" href="#contact">Get in touch</a><a class="btn o" href="#work">View projects</a><a class="btn o" href="/Santhosh_B_Resume.pdf" download>Download resume ↓</a>
 </div>
-<figure class="portrait"><div class="ph"><img src="/profile-photo.jpg" alt="Santhosh B" width="400" height="500" fetchpriority="high"></div></figure>
+<figure class="portrait"><div class="ph"><img src="/profile-photo.jpg" alt="Santhosh B" width="400" height="500" loading="lazy"></div></figure>
 </div>
 <div class="stats">
 <div class="stat"><b data-n="2">0</b><span>Years in ERP development</span></div>
@@ -119,7 +121,7 @@
 <section id="exp" class="rv">
 <div class="eyebrow">Experience</div><h2>Where I've worked</h2>
 <div class="tl">
-<div><div class="row"><h3>Software Developer</h3><span class="when">Jan 2025 – Present</span></div><div class="co">Tenth Planet Technologies Pvt. Ltd., Chennai</div>
+<div class="now"><div class="row"><h3>Software Developer</h3><span class="when">Jan 2025 – Present</span></div><div class="co">Tenth Planet Technologies Pvt. Ltd., Chennai</div>
 <ul><li>Developed and maintained Java backend functionality within the Compiere / iDempiere ERP framework for Purchase, Sales, Inventory and Accounting.</li>
 <li>Built two iDempiere 13 integrations as OSGi plugins: India GST e-invoicing (IRP) and Razorpay payment links. <a href="#work">See projects</a>.</li>
 <li>Built and customized backend business logic from functional requirements across multiple ERP workflows.</li>

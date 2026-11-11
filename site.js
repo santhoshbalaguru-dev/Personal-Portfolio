@@ -6,7 +6,7 @@
    Animations are skipped when the visitor prefers reduced motion.
    The #bar and #glow elements are created here, so pages need no extra markup. */
 (function(){
- var root=document.documentElement,KEY='sb-theme';
+  var root=document.documentElement,KEY='sb-theme',SEARCH_ON=false;
  function saved(){try{var t=localStorage.getItem(KEY);return t==='dark'||t==='light'?t:null}catch(e){return null}}
  function apply(t){if(t)root.dataset.theme=t;else delete root.dataset.theme}
  apply(saved());
@@ -73,6 +73,7 @@ var setOpen=function(o){nv.classList.toggle('open',o);root.classList.toggle('men
  /* Command palette: Ctrl/Cmd+K, "/" or the nav search button. Built here, so pages need no extra markup.
     Lists the current page's sections, the other pages, and quick actions. */
  document.addEventListener('DOMContentLoaded',function(){
+   if(!SEARCH_ON)return;
   var root=document.documentElement,
    path=location.pathname.replace(/\.html$/,'').replace(/\/+$/,'')||'/',
    EMAIL='santhoshbalaguru88@gmail.com',items=[],shown=[],cur=0,prev=null;
@@ -218,7 +219,16 @@ var setOpen=function(o){nv.classList.toggle('open',o);root.classList.toggle('men
    s.opacity=1;shown=true}
   new MutationObserver(function(){place()}).observe(links,{attributes:true,subtree:true,attributeFilter:['class']});
   addEventListener('resize',function(){place(true)});
-  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){place(true)});
+  addEventListener('load',function(){place(true)});
+  if(document.fonts){
+   if(document.fonts.ready)document.fonts.ready.then(function(){place(true)});
+   if(document.fonts.addEventListener)document.fonts.addEventListener('loadingdone',function(){place(true)});
+  }
+  if(window.ResizeObserver){
+   var ro=new ResizeObserver(function(){place(true)});
+   ro.observe(links);
+   links.querySelectorAll('a').forEach(function(a){ro.observe(a)});
+  }
   place(true);
  });
 
